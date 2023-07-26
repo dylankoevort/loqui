@@ -61,7 +61,7 @@ const LoadingScreen = () => {
 			displayName: displayName,
 			photoUrl: photoURL,
 			createdAt: Timestamp.fromDate(new Date()),
-			lastMessage: '',
+			lastMessage: 'Hello there!',
 			lastMessageTimestamp: Timestamp.fromDate(new Date()),
 			uid
 		};
