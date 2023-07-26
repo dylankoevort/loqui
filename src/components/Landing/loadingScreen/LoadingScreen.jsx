@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, GoogleAuthProvider, getRedirectResult } from 'firebase/auth';
+import { auth, db } from 'src/firebase';
+import { addDoc, collection, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { StyledLoadingScreen, StyledContainer } from './styledComponents';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Button } from 'components/shared';
@@ -11,6 +13,7 @@ const LoadingScreen = () => {
 	const [progress, setProgress] = useState(0);
 	const [usersFetched, setUsersFetched] = useState(true);
 	const [messagesFetched, setMessagesFetched] = useState(true);
+	const [newUser, setNewUser] = useState([]);
 
 	useEffect(() => {
 		const auth = getAuth();
@@ -32,6 +35,7 @@ const LoadingScreen = () => {
 						photoURL: user.photoURL
 					})
 				);
+				addUser();
 				dispatch(setLoggedIn(true));
 			})
 			.catch((error) => {
@@ -51,8 +55,37 @@ const LoadingScreen = () => {
 			});
 	});
 
+	const addUser = async () => {
+		const { uid, displayName, photoURL } = auth.currentUser;
+		const newUser = {
+			displayName: displayName,
+			photoUrl: photoURL,
+			createdAt: Timestamp.fromDate(new Date()),
+			lastMessage: '',
+			lastMessageTimestamp: Timestamp.fromDate(new Date()),
+			uid
+		};
+		console.log(newUser);
+		await addDoc(collection(db, 'users'), newUser);
+	};
+
 	const checkDataFetched = () => {
 		if (usersFetched && messagesFetched) {
+			const result = auth.currentUser;
+			const token = result.accessToken;
+			const user = result;
+
+			dispatch(setUser(user));
+			dispatch(setToken(token));
+			dispatch(
+				setSession({
+					uid: user.uid,
+					displayName: user.displayName,
+					photoURL: user.photoURL
+				})
+			);
+			addUser();
+			dispatch(setLoggedIn(true));
 			dispatch(setLoadingFinished(true));
 		}
 	};
