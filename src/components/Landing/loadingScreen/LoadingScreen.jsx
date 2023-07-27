@@ -12,7 +12,6 @@ const LoadingScreen = (props) => {
 
 	useEffect(() => {
 		if (progress === 100) {
-			console.log('progress  bar finished');
 			dispatch(setProgressBarFinished(true));
 		}
 	}, [progress]);
@@ -22,7 +21,7 @@ const LoadingScreen = (props) => {
 		const timer = setInterval(() => {
 			setProgress((oldProgress) => {
 				if (oldProgress !== 100) {
-					const diff = Math.random() * 15;
+					const diff = Math.random() * 20;
 					return Math.min(oldProgress + diff, 100);
 				}
 				return 100;

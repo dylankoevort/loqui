@@ -21,7 +21,6 @@ const ChatList = () => {
 
 			const sortedUsers = usersCollection.sort((a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp);
 			setChatUsers(sortedUsers);
-			console.log('chat users set');
 		});
 
 		return () => unsubscribe;
