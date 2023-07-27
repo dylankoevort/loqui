@@ -21,7 +21,7 @@ const LoadingScreen = (props) => {
 		const timer = setInterval(() => {
 			setProgress((oldProgress) => {
 				if (oldProgress !== 100) {
-					const diff = Math.random() * 20;
+					const diff = Math.random() * 10;
 					return Math.min(oldProgress + diff, 100);
 				}
 				return 100;
