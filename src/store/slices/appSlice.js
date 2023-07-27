@@ -7,10 +7,14 @@ const initialState = {
 		displayName: '',
 		photoURL: '',
 		currentView: 'LOGIN',
-		loadingFinished: false
+		loadingFinished: false,
+		chatUsers: [],
+		progressBarFinished: false,
+		logout: false
 	},
 	token: null,
-	loggedIn: false
+	loggedIn: false,
+	pendingAuth: true
 };
 
 const appSlice = createSlice({
@@ -37,10 +41,34 @@ const appSlice = createSlice({
 		},
 		setCurrentView: (state, action) => {
 			state.session.currentView = action.payload;
+		},
+		setPendingAuth: (state, action) => {
+			state.pendingAuth = action.payload;
+		},
+		setChatUsers: (state, action) => {
+			state.session.chatUsers = action.payload;
+		},
+		setProgressBarFinished: (state, action) => {
+			state.session.progressBarFinished = action.payload;
+		},
+		setLogout: (state, action) => {
+			state.session.logout = action.payload;
 		}
 	}
 });
 
-export const { setUser, setToken, setSession, setLoggedIn, clearSession, setCurrentView, setLoadingFinished } = appSlice.actions;
+export const {
+	setUser,
+	setToken,
+	setSession,
+	setLoggedIn,
+	clearSession,
+	setCurrentView,
+	setLoadingFinished,
+	setPendingAuth,
+	setChatUsers,
+	setProgressBarFinished,
+	setLogout
+} = appSlice.actions;
 
 export default appSlice.reducer;

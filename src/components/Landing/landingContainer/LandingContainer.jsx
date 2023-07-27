@@ -3,7 +3,7 @@ import { StyledLandingContainer, StyledLandingHeader, StyledLandingMain } from '
 import Login from '../login';
 import { WhatsAppIcon } from 'src/assets';
 
-const LandingContainer = () => {
+const LandingContainer = (props) => {
 	return (
 		<StyledLandingContainer>
 			<StyledLandingHeader>
@@ -13,7 +13,7 @@ const LandingContainer = () => {
 				<div className="title">not-Whatsapp Web</div>
 			</StyledLandingHeader>
 			<StyledLandingMain>
-				<Login />
+				<Login {...props} />
 			</StyledLandingMain>
 		</StyledLandingContainer>
 	);

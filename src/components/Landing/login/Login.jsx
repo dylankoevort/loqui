@@ -1,16 +1,10 @@
 import React from 'react';
-import { getAuth, signInWithRedirect } from 'firebase/auth';
-import { provider } from 'src/firebase';
 import { StyledLogin, StyledLoginMain } from './styledComponents';
 import { Button } from '@mui/material';
 import { QrCode } from 'src/assets';
 
-const Login = () => {
-	const handleLogin = () => {
-		window.sessionStorage.setItem('fromRedirect', true);
-		const auth = getAuth();
-		signInWithRedirect(auth, provider);
-	};
+const Login = (props) => {
+	const { handleLogin } = props;
 
 	return (
 		<StyledLogin>
