@@ -16,7 +16,7 @@ const ChatList = () => {
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
 			const usersCollection = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 			usersCollection.map((user) => {
-				user.timeStamp = user.lastMessageTimestamp.toDate().toLocaleTimeString();
+				user.timeStamp = user.lastMessageTimestamp.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
 			});
 
 			const sortedUsers = usersCollection.sort((a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp);

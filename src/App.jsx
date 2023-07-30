@@ -25,8 +25,8 @@ function App() {
 			if (authDone) return;
 			window.sessionStorage.removeItem('fromRedirect');
 			setCurrentUser(user);
-			setUser(user);
-			setToken(user.accessToken);
+			dispatch(setUser(user));
+			dispatch(setToken(user.accessToken));
 			dispatch(
 				setSession({
 					uid: user.uid,
@@ -54,7 +54,7 @@ function App() {
 			setLoadingFinished(true);
 			setShowLoading(false);
 		}
-	}, [userAdded]);
+	}, [userAdded, progressBarFinished]);
 
 	useEffect(() => {
 		if (showLoading && authDone && !userAdded) {
@@ -124,11 +124,22 @@ function App() {
 		handleLogout: handleLogout
 	};
 
-	if (!showLoading && !loadingFinished) return <LandingContainer {...landingProps} />;
+	useEffect(() => {
+		render();
+	}, [showLoading, loadingFinished]);
 
-	if (showLoading) return <LoadingScreen {...loadingScreenProps} />;
+	const render = () => {
+		if (showLoading) {
+			return <LoadingScreen {...loadingScreenProps} />;
+		} else if (!loadingFinished) {
+			return <LandingContainer {...landingProps} />;
+		} else {
+			return <AppLayout {...appProps} />;
+		}
+		// return <AppLayout {...appProps} />;
+	};
 
-	if (!showLoading && loadingFinished) return <AppLayout {...appProps} />;
+	return render();
 }
 
 export default App;

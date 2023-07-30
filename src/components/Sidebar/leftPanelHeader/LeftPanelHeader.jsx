@@ -22,7 +22,12 @@ const LeftPanelHeader = () => {
 
 	const handleMenuClose = () => {
 		setAnchorEl(null);
-		dispatch(setLogout(true));
+	};
+
+	const handleMenuItemClick = (option) => {
+		handleMenuClose();
+
+		if (option === 'Logout') dispatch(setLogout(true));
 	};
 
 	const options = ['Logout'];
@@ -38,13 +43,19 @@ const LeftPanelHeader = () => {
 				</StyledProfileImage>
 				<StyledIconContainer>
 					<div className="icon">
-						<PeopleIcon />
+						<IconButton>
+							<PeopleIcon />
+						</IconButton>
 					</div>
 					<div className="icon">
-						<DonutLargeIcon />
+						<IconButton>
+							<DonutLargeIcon />
+						</IconButton>
 					</div>
 					<div className="icon">
-						<ChatIcon />
+						<IconButton>
+							<ChatIcon />
+						</IconButton>
 					</div>
 					<div className="icon">
 						<IconButton
@@ -67,7 +78,7 @@ const LeftPanelHeader = () => {
 							onClose={handleMenuClose}
 						>
 							{options.map((option) => (
-								<MenuItem key={option} onClick={handleMenuClose}>
+								<MenuItem key={option} onClick={() => handleMenuItemClick(option)}>
 									{option}
 								</MenuItem>
 							))}
