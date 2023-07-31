@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "loqui-app"
+    "default": "loqui-385d8"
+  },
+  "targets": {
+    "loqui-385d8": {
+      "hosting": {
+        "loqui": [
+          "loqui-app"
+        ]
+      }
+    }
   }
 }
