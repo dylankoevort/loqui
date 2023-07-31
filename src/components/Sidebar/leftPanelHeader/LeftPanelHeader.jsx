@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledLeftPanelHeader, StyledProfileImage, StyledIconContainer } from './styledComponents';
+import IconButton from '@mui/material/IconButton';
 import PeopleIcon from '@mui/icons-material/People';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useSelector } from 'react-redux';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLogout } from 'src/store/slices';
 
 const LeftPanelHeader = () => {
+	const dispatch = useDispatch();
 	const userImage = useSelector((state) => state.app.session.photoURL);
+	const [anchorEl, setAnchorEl] = useState(null);
+	const open = Boolean(anchorEl);
+
+	const handleIconClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleMenuClose = () => {
+		setAnchorEl(null);
+	};
+
+	const handleMenuItemClick = (option) => {
+		handleMenuClose();
+
+		if (option === 'Logout') dispatch(setLogout(true));
+	};
+
+	const options = ['Logout'];
 	return (
 		<>
 			<StyledLeftPanelHeader>
@@ -20,16 +43,46 @@ const LeftPanelHeader = () => {
 				</StyledProfileImage>
 				<StyledIconContainer>
 					<div className="icon">
-						<PeopleIcon />
+						<IconButton>
+							<PeopleIcon />
+						</IconButton>
 					</div>
 					<div className="icon">
-						<DonutLargeIcon />
+						<IconButton>
+							<DonutLargeIcon />
+						</IconButton>
 					</div>
 					<div className="icon">
-						<ChatIcon />
+						<IconButton>
+							<ChatIcon />
+						</IconButton>
 					</div>
 					<div className="icon">
-						<MoreVertIcon />
+						<IconButton
+							aria-label="more"
+							id="options-menu-button"
+							aria-controls={open ? 'long-menu' : undefined}
+							aria-expanded={open ? 'true' : undefined}
+							aria-haspopup="true"
+							onClick={handleIconClick}
+						>
+							<MoreVertIcon />
+						</IconButton>
+						<Menu
+							id="options-menu"
+							MenuListProps={{
+								'aria-labelledby': 'options-menu-button'
+							}}
+							anchorEl={anchorEl}
+							open={open}
+							onClose={handleMenuClose}
+						>
+							{options.map((option) => (
+								<MenuItem key={option} onClick={() => handleMenuItemClick(option)}>
+									{option}
+								</MenuItem>
+							))}
+						</Menu>
 					</div>
 				</StyledIconContainer>
 			</StyledLeftPanelHeader>

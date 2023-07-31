@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { db } from 'src/firebase';
-import { query, collection, orderBy, onSnapshot, limit } from 'firebase/firestore';
 import { StyledChatList, StyledSearchBar, StyledInfoMessage } from './styledComponents';
 import ChatListItem from '../chatListItem';
 import { useSelector } from 'react-redux';
-import { fetchUsers } from 'src/helpers';
+import { query, collection, orderBy, onSnapshot, limit } from 'firebase/firestore';
+import { db } from 'src/firebase';
 
 const ChatList = () => {
 	const displayName = useSelector((state) => state.app.session.displayName);
-	const [users, setUsers] = useState([]);
+	const [chatUsers, setChatUsers] = useState([]);
 
+	// Handles updating of chat list users
 	useEffect(() => {
-		// move to loading screen (need to handle when showing chats and chat gets updated)
-		// (possible seperate handler that gets called when loading and when chat displaying)
-		const q = query(collection(db, 'users'), orderBy('lastMessageTimestamp', 'desc'), limit(30));
+		const q = query(collection(db, 'users'), orderBy('lastMessageTimestamp'), limit(60));
 
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
-			const users = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-			users.map((user) => {
-				user.timeStamp = user.lastMessageTimestamp.toDate().toLocaleTimeString();
+			const usersCollection = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+			usersCollection.map((user) => {
+				user.timeStamp = user.lastMessageTimestamp.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
 			});
 
-			const sortedUsers = users.sort((a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp);
-
-			setUsers(sortedUsers);
+			const sortedUsers = usersCollection.sort((a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp);
+			setChatUsers(sortedUsers);
 		});
 
 		return () => unsubscribe;
@@ -35,13 +32,13 @@ const ChatList = () => {
 				<h3>{displayName}</h3>
 			</StyledSearchBar>
 			<StyledChatList>
-				{users.map((user) => (
+				{chatUsers.map((user) => (
 					<ChatListItem
 						key={user.uid}
 						id={user.uid}
 						name={user.displayName}
 						message={user.lastMessage}
-						avatarSrc={user.photoUrl}
+						avatarSrc={user.photoURL}
 						timeStamp={user.timeStamp}
 					/>
 				))}

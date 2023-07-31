@@ -27,6 +27,9 @@
 	--chat-bubble-outgoing: #d9fdd3;
 	--chat-bubble-incoming: #fff;
 	--chat-background: #efeae2;
+	--chat-message-compose-background: #fff;
+	--chat-message-placeholder: #667781;
+	--chat-message-compose-colour: #3b4a54;
 
 	--shadow: #5d6367;
 	/* --shadow: #0b141a; */
@@ -78,4 +81,11 @@ html {
 	::-webkit-scrollbar-thumb {
 		background: var(--scrollbar);
 	}
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 15px;
 }

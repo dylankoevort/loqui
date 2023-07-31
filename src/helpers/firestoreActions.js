@@ -2,7 +2,7 @@ import { db } from 'src/firebase';
 import { query, collection, orderBy, onSnapshot, limit } from 'firebase/firestore';
 
 const fetchUsers = () => {
-	const sortedUsers = [];
+	let sortedUsers = [];
 	const q = query(collection(db, 'users'), orderBy('lastMessageTimestamp', 'desc'), limit(30));
 
 	const unsubscribe = onSnapshot(q, (querySnapshot) => {

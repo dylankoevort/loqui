@@ -1,19 +1,19 @@
 import React from 'react';
 import { StyledLandingContainer, StyledLandingHeader, StyledLandingMain } from './styledComponents';
 import Login from '../login';
-import { WhatsAppIcon } from 'src/assets';
+import { LlamaIcon } from 'src/assets';
 
-const LandingContainer = () => {
+const LandingContainer = (props) => {
 	return (
 		<StyledLandingContainer>
 			<StyledLandingHeader>
 				<div className="icon">
-					<img src={WhatsAppIcon} alt="WhatsApp" />
+					<img src={LlamaIcon} alt="Loqui" />
 				</div>
-				<div className="title">not-Whatsapp Web</div>
+				<div className="title">Loqui</div>
 			</StyledLandingHeader>
 			<StyledLandingMain>
-				<Login />
+				<Login {...props} />
 			</StyledLandingMain>
 		</StyledLandingContainer>
 	);
