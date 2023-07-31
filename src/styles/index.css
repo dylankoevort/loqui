@@ -2,7 +2,7 @@
 	--background-default: #fff;
 	--page-background-colour: #eae6df;
 	--page-background-colour-darker: #d1d7db;
-	--page-top-colour: #00a884;
+	--page-top-colour: #1565c0;
 	--landing-page-background: #f0f2f5;
 
 	--header-panel-background: #f0f2f5;
@@ -24,7 +24,7 @@
 	--text-landing-steps: #3b4a54;
 	--text-button: #54656f;
 
-	--chat-bubble-outgoing: #d9fdd3;
+	--chat-bubble-outgoing: #b9daff;
 	--chat-bubble-incoming: #fff;
 	--chat-background: #efeae2;
 	--chat-message-compose-background: #fff;
@@ -41,7 +41,7 @@
 	--google-red: #e53935;
 
 	--progress-background: #e9edef;
-	--progress-colour: #00c298;
+	--progress-colour: #1565c0;
 }
 
 body {
