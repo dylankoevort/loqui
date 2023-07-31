@@ -14,13 +14,13 @@ const firebaseConfig = {
 	// messagingSenderId: import.meta.env.VITE_messagingSenderId,
 	// appId: import.meta.env.VITE_appId,
 	// measurementId: import.meta.env.VITE_measurementId
-	apiKey: 'AIzaSyBF-_R0G6FgJtD38daU3fr8SozHpgkasGw',
-	authDomain: 'not-whatsapp-f05e3.firebaseapp.com',
-	projectId: 'not-whatsapp-f05e3',
-	storageBucket: 'not-whatsapp-f05e3.appspot.com',
-	messagingSenderId: '250540821200',
-	appId: '1:250540821200:web:2156c9761bbc6e48a6acd5',
-	measurementId: 'G-T44FL5JTR1'
+	apiKey: 'AIzaSyAV7om_uCO6C9zue0YKh82EkNTLyb08P1A',
+	authDomain: 'loqui-385d8.firebaseapp.com',
+	projectId: 'loqui-385d8',
+	storageBucket: 'loqui-385d8.appspot.com',
+	messagingSenderId: '163232009',
+	appId: '1:163232009:web:922e8c3a35ccab6ec5bbd8',
+	measurementId: 'G-JVRPG74Y2Y'
 };
 
 const app = initializeApp(firebaseConfig);

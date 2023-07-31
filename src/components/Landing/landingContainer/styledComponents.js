@@ -50,6 +50,13 @@ const StyledLandingHeader = styled.div`
 		max-height: 42px;
 		min-width: 42px;
 		max-width: 42px;
+
+		img {
+			min-height: 42px;
+			max-height: 42px;
+			min-width: 42px;
+			max-width: 42px;
+		}
 	}
 
 	.title {

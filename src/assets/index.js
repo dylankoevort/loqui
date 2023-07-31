@@ -1,4 +1,4 @@
-import WhatsAppIcon from './whatsApp.svg';
+import LlamaIcon from './llamaIcon.svg';
 import QrCode from './qr-code.svg';
 
-export { WhatsAppIcon, QrCode };
+export { LlamaIcon, QrCode  };

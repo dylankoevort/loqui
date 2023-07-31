@@ -10,7 +10,7 @@ const Login = (props) => {
 		<StyledLogin>
 			<StyledLoginMain>
 				<div className="left">
-					<div className="title">Use not-Whatsapp on your computer</div>
+					<div className="title">Use Loqui on your computer</div>
 					<div className="steps-text">
 						<p>
 							1. <strong>Scan</strong> the <strong>QR code</strong> to the right with your <strong>phone</strong>
