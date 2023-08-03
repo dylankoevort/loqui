@@ -2,8 +2,11 @@
 	"compilerOptions": {
 		"baseUrl": "./src",
 		"paths": {
-			"src/*": ["./src/*"],
-			"components/*": ["./src/components/*"]
+			"src/*": ["*"],
+			"components/*": ["components/*"],
+			"helpers/*": ["helpers/*"],
+			"store/*": ["store/*"]
 		}
-	}
+	},
+	"include": ["src"]
 }

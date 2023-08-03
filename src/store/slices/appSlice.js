@@ -6,15 +6,18 @@ const initialState = {
 		uid: null,
 		displayName: '',
 		photoURL: '',
-		currentView: 'LOGIN',
-		loadingFinished: false,
-		chatUsers: [],
 		progressBarFinished: false,
 		logout: false
 	},
 	token: null,
 	loggedIn: false,
-	pendingAuth: true
+	conversation: {
+		messages: [],
+		userPhotoUrl: '',
+		userDisplayName: '',
+		userUid: '',
+		userLastSeen: null
+	}
 };
 
 const appSlice = createSlice({
@@ -32,43 +35,23 @@ const appSlice = createSlice({
 			state.session.displayName = action.payload.displayName;
 			state.session.photoURL = action.payload.photoURL;
 		},
-		setLoggedIn: (state, action) => {
-			state.loggedIn = action.payload;
-		},
 		clearSession: () => initialState,
-		setLoadingFinished: (state, action) => {
-			state.session.loadingFinished = action.payload;
-		},
-		setCurrentView: (state, action) => {
-			state.session.currentView = action.payload;
-		},
-		setPendingAuth: (state, action) => {
-			state.pendingAuth = action.payload;
-		},
-		setChatUsers: (state, action) => {
-			state.session.chatUsers = action.payload;
-		},
 		setProgressBarFinished: (state, action) => {
 			state.session.progressBarFinished = action.payload;
 		},
 		setLogout: (state, action) => {
 			state.session.logout = action.payload;
+		},
+		setConversation: (state, action) => {
+			state.conversation.messages = action.payload.messages;
+			state.conversation.userPhotoUrl = action.payload.userPhotoUrl;
+			state.conversation.userDisplayName = action.payload.userDisplayName;
+			state.conversation.userUid = action.payload.userUid;
+			state.conversation.userLastSeen = action.payload.userLastSeen;
 		}
 	}
 });
 
-export const {
-	setUser,
-	setToken,
-	setSession,
-	setLoggedIn,
-	clearSession,
-	setCurrentView,
-	setLoadingFinished,
-	setPendingAuth,
-	setChatUsers,
-	setProgressBarFinished,
-	setLogout
-} = appSlice.actions;
+export const { setUser, setToken, setSession, setConversation, clearSession, setProgressBarFinished, setLogout } = appSlice.actions;
 
 export default appSlice.reducer;

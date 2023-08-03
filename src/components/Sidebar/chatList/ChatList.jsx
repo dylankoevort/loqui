@@ -33,14 +33,7 @@ const ChatList = () => {
 			</StyledSearchBar>
 			<StyledChatList>
 				{chatUsers.map((user) => (
-					<ChatListItem
-						key={user.uid}
-						id={user.uid}
-						name={user.displayName}
-						message={user.lastMessage}
-						avatarSrc={user.photoURL}
-						timeStamp={user.timeStamp}
-					/>
+					<ChatListItem key={user.uid} user={user} />
 				))}
 				<StyledInfoMessage>
 					<div className="text">Your personal messages may or may not be encrypted.</div>

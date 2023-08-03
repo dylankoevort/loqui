@@ -1,25 +1,48 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { StyledChatListItem, StyledProfileImage, StyledContentContainer, StyledPrimaryRow, StyledSecondaryRow } from './styledComponents';
+import { setConversation } from 'store/slices';
 
 const ChatListItem = (props) => {
-	const { name, message, timeStamp, avatarSrc } = props;
+	const dispatch = useDispatch();
+	const { user } = props;
+	const { displayName, timeStamp, lastMessage, photoURL, uid } = user;
+
+	const handleUserSelect = () => {
+		//get messages
+		const messages = fetchConversationMessages();
+
+		const conversation = {
+			messages: messages,
+			userPhotoUrl: photoURL,
+			userDisplayName: displayName,
+			userUid: uid,
+			userLastSeen: timeStamp
+		};
+		dispatch(setConversation(conversation));
+	};
+
+	const fetchConversationMessages = () => {
+		return [];
+	};
+
 	return (
 		<>
-			<StyledChatListItem>
+			<StyledChatListItem onClick={handleUserSelect}>
 				<StyledProfileImage>
 					<div className="image-container">
 						<div className="image">
-							<img src={avatarSrc} alt={name} />
+							<img src={photoURL} alt={displayName} />
 						</div>
 					</div>
 				</StyledProfileImage>
 				<StyledContentContainer>
 					<StyledPrimaryRow>
-						<div className="name">{name}</div>
+						<div className="name">{displayName}</div>
 						<div className="time-stamp">{timeStamp}</div>
 					</StyledPrimaryRow>
 					<StyledSecondaryRow>
-						<div className="message">{message}</div>
+						<div className="message">{lastMessage}</div>
 					</StyledSecondaryRow>
 				</StyledContentContainer>
 			</StyledChatListItem>
