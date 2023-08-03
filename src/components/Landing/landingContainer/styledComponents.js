@@ -81,8 +81,8 @@ const StyledLandingMain = styled.div`
 	margin-right: auto;
 	margin-left: auto;
 	background-color: #fff;
-	border-radius: 3px;
-	box-shadow: 0 17px 50px 0 rgba(11, 20, 26, 0.19), 0 12px 15px 0 rgba(11, 20, 26, 0.24);
+	border-radius: 5px;
+	box-shadow: 0 2px 5px 0 rgba(11, 20, 26, 0.19)
 `;
 
 export { StyledLandingContainer, StyledLandingHeader, StyledLandingMain };

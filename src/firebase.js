@@ -15,7 +15,7 @@ const firebaseConfig = {
 	// appId: import.meta.env.VITE_appId,
 	// measurementId: import.meta.env.VITE_measurementId
 	apiKey: 'AIzaSyAV7om_uCO6C9zue0YKh82EkNTLyb08P1A',
-	authDomain: 'loqui-385d8.firebaseapp.com',
+	authDomain: 'loqui.co.za',
 	projectId: 'loqui-385d8',
 	storageBucket: 'loqui-385d8.appspot.com',
 	messagingSenderId: '163232009',

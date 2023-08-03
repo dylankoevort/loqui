@@ -27,7 +27,7 @@ const LeftPanelHeader = () => {
 	const handleMenuItemClick = (option) => {
 		handleMenuClose();
 
-		if (option === 'Logout') dispatch(setLogout(true));
+		if (option === 'Logout') dispatch(setLoggedIn(false));
 	};
 
 	const options = ['Logout'];

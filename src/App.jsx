@@ -1,28 +1,38 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAuth, signInWithRedirect, onAuthStateChanged, deleteUser, GoogleAuthProvider, getRedirectResult, signOut } from 'firebase/auth';
+import {
+	getAuth,
+	signInWithRedirect,
+	onAuthStateChanged,
+	setPersistence,
+	inMemoryPersistence,
+	deleteUser,
+	GoogleAuthProvider,
+	getRedirectResult,
+	signOut
+} from 'firebase/auth';
 import { query, doc, collection, getDocs, setDoc, deleteDoc, orderBy, onSnapshot, limit, addDoc, where, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { auth, provider, db } from 'src/firebase';
 import { AppLayout } from 'components/App';
 import { LandingContainer, LoadingScreen } from 'components/Landing';
-import { setUser, setToken, setSession, setLoggedIn, setLoadingFinished, clearSession, setCurrentView, setChatUsers } from 'src/store/slices';
+import { setUser, setToken, setSession, clearSession } from 'store/slices';
 
 function App() {
 	const auth = getAuth();
 	const dispatch = useDispatch();
 	const isFromRedirect = window.sessionStorage.getItem('fromRedirect');
 	const [showLoading, setShowLoading] = useState(isFromRedirect && isFromRedirect === 'true');
-	const pendingAuth = useSelector((state) => state.app.pendingAuth);
 	const [currentUser, setCurrentUser] = useState(null);
 	const [loadingFinished, setLoadingFinished] = useState(false);
-	const [authDone, setAuthDone] = useState(false);
 	const [userAdded, setUserAdded] = useState(false);
 	const progressBarFinished = useSelector((state) => state.app.session.progressBarFinished);
 	const logoutClicked = useSelector((state) => state.app.session.logout);
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
-			if (authDone) return;
+			if (currentUser && currentUser.uid === user.uid) {
+				return;
+			}
 			window.sessionStorage.removeItem('fromRedirect');
 			setCurrentUser(user);
 			dispatch(setUser(user));
@@ -34,14 +44,10 @@ function App() {
 					photoURL: user.photoURL
 				})
 			);
-
-			setAuthDone(true);
 		} else {
 			window.sessionStorage.removeItem('fromRedirect');
 		}
 	});
-
-	useEffect(() => {}, [showLoading]);
 
 	useEffect(() => {
 		if (logoutClicked) {
@@ -57,10 +63,12 @@ function App() {
 	}, [userAdded, progressBarFinished]);
 
 	useEffect(() => {
-		if (showLoading && authDone && !userAdded) {
+		if (currentUser) {
+		}
+		if (showLoading && currentUser && !userAdded) {
 			addUser();
 		}
-	}, [authDone]);
+	}, [currentUser]);
 
 	const addUser = async () => {
 		if (!currentUser) return;
@@ -90,7 +98,14 @@ function App() {
 
 	const handleLogin = () => {
 		window.sessionStorage.setItem('fromRedirect', true);
-		signInWithRedirect(auth, provider);
+		setPersistence(auth, inMemoryPersistence)
+			.then(() => {
+				const provider = new GoogleAuthProvider();
+				return signInWithRedirect(auth, provider);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	};
 
 	const handleLogout = () => {

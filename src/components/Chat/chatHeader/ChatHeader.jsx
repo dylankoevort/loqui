@@ -1,22 +1,38 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { StyledChatHeader, StyledUserDetails, StyledProfileImage, StyledIconContainer } from './styledComponents';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const ChatHeader = () => {
-	const userImage = useSelector((state) => state.app.session.photoURL);
+	const conversationData = useSelector((state) => state.app.conversation);
+	const [userDetails, setUserDetails] = useState({
+		userDisplayName: '',
+		userPhotoUrl: '',
+		userLastSeen: ''
+	});
+
+	useEffect(() => {
+		if (conversationData) {
+			setUserDetails({
+				userDisplayName: conversationData.userDisplayName,
+				userPhotoUrl: conversationData.userPhotoUrl,
+				userLastSeen: conversationData.userLastSeen
+			});
+		}
+	}, [conversationData]);
+
 	return (
 		<StyledChatHeader>
 			<StyledProfileImage>
 				<div className="image-container">
-					<img src={userImage} alt="" />
+					<img src={userDetails.userPhotoUrl} alt="" />
 				</div>
 			</StyledProfileImage>
 			<StyledUserDetails>
-				<div className="name">{'Test'}</div>
-				<div className="last-seen">{'last seen today at 21:21'}</div>
+				<div className="name">{userDetails.userDisplayName}</div>
+				<div className="last-seen">{'last seen today at ' + userDetails.userLastSeen}</div>
 			</StyledUserDetails>
 			<StyledIconContainer>
 				<IconButton>
