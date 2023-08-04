@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledLogin, StyledLoginMain } from './styledComponents';
 import { Button } from '@mui/material';
-import { QrCode } from 'src/assets';
+import { QrCode } from 'assets';
 
 const Login = (props) => {
 	const { handleLogin } = props;

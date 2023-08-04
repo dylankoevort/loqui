@@ -16,6 +16,7 @@ export default defineConfig({
 		alias: {
 			src: '/src',
 			components: '/src/components',
+			assets: '/src/assets',
 			helpers: '/src/helpers',
 			store: '/src/store'
 		}

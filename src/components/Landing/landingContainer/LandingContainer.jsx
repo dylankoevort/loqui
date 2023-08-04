@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledLandingContainer, StyledLandingHeader, StyledLandingMain } from './styledComponents';
 import Login from '../login';
-import { IconWhite } from 'src/assets';
+import { IconWhite } from 'assets';
 
 const LandingContainer = (props) => {
 	return (

@@ -3,7 +3,7 @@ import { StyledLoadingScreen, StyledContainer } from './styledComponents';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Button } from 'components/shared';
 import { useDispatch } from 'react-redux';
-import { setProgressBarFinished } from 'src/store/slices';
+import { setProgressBarFinished } from 'store/slices';
 
 const LoadingScreen = (props) => {
 	const { handleLogout } = props;
