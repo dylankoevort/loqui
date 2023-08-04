@@ -9,21 +9,13 @@ const ChatListItem = (props) => {
 	const { displayName, timeStamp, lastMessage, photoURL, uid } = user;
 
 	const handleUserSelect = () => {
-		//get messages
-		const messages = fetchConversationMessages();
-
 		const conversation = {
-			messages: messages,
 			userPhotoUrl: photoURL,
 			userDisplayName: displayName,
 			userUid: uid,
 			userLastSeen: timeStamp
 		};
 		dispatch(setConversation(conversation));
-	};
-
-	const fetchConversationMessages = () => {
-		return [];
 	};
 
 	return (

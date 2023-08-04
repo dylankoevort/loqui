@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { auth, db } from 'src/firebase';
+import React, { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { db } from 'src/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { StyledChatFooter, StyledFooterActions, StyledIcons, StyledComposeMessage } from './styledComponents';
 import IconButton from '@mui/material/IconButton';
@@ -10,16 +10,10 @@ import SendIcon from '@mui/icons-material/Send';
 
 const ChatFooter = () => {
 	const [message, setMessage] = useState('');
-	const user = useSelector((state) => state.app.user);
+	const currentUserUid = useSelector((state) => state.app.session.uid);
+	const conversationData = useSelector((state) => state.app.conversation);
 
-	const messageRef = useRef(message);
 	const messageValue = useRef(message);
-
-	// window.addEventListener('keydown', (e) => {
-	// 	if (e.key === 'Enter') {
-	// 		sendMessage(e);
-	// 	}
-	// });
 
 	const sendMessage = async (event) => {
 		event.preventDefault();
@@ -27,22 +21,15 @@ const ChatFooter = () => {
 			return;
 		}
 
-		// can prevent spamming
-		// if (message == messageRef.current) {
-		// 	return;
-		// }
-
 		messageValue.current = message;
 		setMessage('');
 
 		await addDoc(collection(db, 'messages'), {
 			message: messageValue.current,
-			sentFromUid: user.uid,
-			sentToUid: 'QOs8b0P9E7kIJA4uggpO',
+			sentFromUid: currentUserUid,
+			sentToUid: conversationData.userUid,
 			sentAt: serverTimestamp()
 		});
-
-		// messageRef.current = message;
 	};
 
 	return (

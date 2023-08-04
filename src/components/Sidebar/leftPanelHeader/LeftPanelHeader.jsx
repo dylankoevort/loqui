@@ -8,7 +8,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLogout } from 'src/store/slices';
+import { setLogout } from 'store/slices';
 
 const LeftPanelHeader = () => {
 	const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const LeftPanelHeader = () => {
 	const handleMenuItemClick = (option) => {
 		handleMenuClose();
 
-		if (option === 'Logout') dispatch(setLoggedIn(false));
+		if (option === 'Logout') dispatch(setLogout(true));
 	};
 
 	const options = ['Logout'];

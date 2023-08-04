@@ -19,6 +19,11 @@ const StyledMessageContainer = styled.div`
 	transition: background 0.3s ease-out 0.1s;
 	padding-left: 0;
 	padding-bottom: 8px;
+
+	h4 {
+		text-align: center;
+		color: var(--conversation-cover-text);
+	}
 `;
 
 export { StyledMessageContainer };

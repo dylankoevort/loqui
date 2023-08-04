@@ -7,6 +7,8 @@ import { db } from 'src/firebase';
 
 const ChatList = () => {
 	const displayName = useSelector((state) => state.app.session.displayName);
+	const currentUserUid = useSelector((state) => state.app.session.uid);
+
 	const [chatUsers, setChatUsers] = useState([]);
 
 	// Handles updating of chat list users
@@ -20,7 +22,9 @@ const ChatList = () => {
 			});
 
 			const sortedUsers = usersCollection.sort((a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp);
-			setChatUsers(sortedUsers);
+			const filteredUsers = sortedUsers.filter((user) => user.uid !== currentUserUid);
+
+			setChatUsers(filteredUsers);
 		});
 
 		return () => unsubscribe;
