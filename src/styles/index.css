@@ -87,15 +87,11 @@ html {
 }
 
 .copyright {
-	position: relative;
-	display: flex;
-	justify-content: flex-end;
+	position: absolute;
+	top: 0;
+	right: 0;
 	padding: 10px;
 	color: #cdcdcd;
 	font-size: small;
 	font-weight: bold;
-
-	@media screen and (max-width: 510px) {
-		background-color: white;
-	}
 }
