@@ -25,8 +25,8 @@ const StyledProfileImage = styled.div`
 
 	.image {
 		display: block;
-		width: 100%;
-		height: 100%;
+		height: 40px;
+		width: 40px;
 		border-radius: 50%;
 		visibility: visible;
 		overflow-y: hidden;
@@ -37,6 +37,8 @@ const StyledProfileImage = styled.div`
 		img {
 			height: 40px;
 			width: 40px;
+			max-width: 100%;
+			display: block;
 		}
 	}
 `;

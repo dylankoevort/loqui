@@ -1,13 +1,6 @@
 import { styled } from 'styled-components';
 
 const StyledLandingContainer = styled.div`
-	z-index: 2;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	padding-bottom: 92px;
-
 	&::before {
 		position: absolute;
 		top: 0;
@@ -19,25 +12,57 @@ const StyledLandingContainer = styled.div`
 		content: '';
 	}
 
-	@media screen and (max-width: 1095px) {
-		padding-right: 36px;
-		padding-left: 36px;
-		// box-sizing: border-box;
-	}
+	padding-right: 36px;
+	padding-left: 36px;
 
 	@media screen and (max-width: 960px) {
-		position: relative;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+
+	@media screen and (max-width: 768px) {
+		padding-right: 36px;
+		padding-left: 36px;
+	}
+
+	@media screen and (max-width: 510px) {
+		padding-right: 0;
+		padding-left: 0;
+	}
+`;
+
+const StyledLandingMain = styled.div`
+	width: 1020px;
+	height: 480px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px 3px rgba(11, 20, 26, 0.19);
+	margin-left: auto;
+	margin-right: auto;
+
+	@media screen and (max-width: 1095px) {
+		width: 100%;
+	}
+
+	@media screen and (max-width: 768px) {
+		height: auto;
+		margin-bottom: 30px;
+	}
+
+	@media screen and (max-width: 510px) {
+		border-radius: 0;
+		margin-bottom: 0;
+		box-shadow: none;
 	}
 `;
 
 const StyledLandingHeader = styled.div`
 	display: flex;
-	flex: none;
 	align-items: center;
-	justify-content: flex-start;
-	width: 1000px;
+	width: 100%;
 	min-height: 39px;
-	margin: 27px auto 28px;
+	margin: 28px auto;
+	box-sizing: border-box;
 
 	@media screen and (min-height: 760px) and (min-width: 1095px) {
 		margin-bottom: 66px;
@@ -46,16 +71,14 @@ const StyledLandingHeader = styled.div`
 	.icon {
 		display: inline-block;
 		vertical-align: top;
-		min-height: 42px;
-		max-height: 42px;
-		min-width: 42px;
-		max-width: 42px;
+		height: 42px;
+		width: 42px;
 
 		img {
-			min-height: 42px;
-			max-height: 42px;
-			min-width: 42px;
-			max-width: 42px;
+			height: 42px;
+			width: 42px;
+			max-width: 100%;
+			display: block;
 		}
 	}
 
@@ -69,20 +92,11 @@ const StyledLandingHeader = styled.div`
 		text-transform: uppercase;
 		vertical-align: middle;
 	}
-`;
 
-const StyledLandingMain = styled.div`
-	z-index: 2;
-	display: flex;
-	flex: none;
-	flex-direction: column;
-	width: 1020px;
-	overflow: hidden;
-	margin-right: auto;
-	margin-left: auto;
-	background-color: #fff;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px 0 rgba(11, 20, 26, 0.19)
+	@media screen and (max-width: 510px) {
+		padding-right: 36px;
+		padding-left: 36px;
+	}
 `;
 
 export { StyledLandingContainer, StyledLandingHeader, StyledLandingMain };

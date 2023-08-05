@@ -7,8 +7,8 @@ const Login = (props) => {
 	const { handleLogin } = props;
 
 	return (
-		<StyledLogin>
-			<StyledLoginMain>
+		<StyledLogin id="login">
+			<StyledLoginMain id="login-main">
 				<div className="left">
 					<div className="title">Use Loqui on your computer</div>
 					<div className="steps-text">

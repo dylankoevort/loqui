@@ -7,7 +7,7 @@ const StyledAppContainer = styled.div`
 	overflow: hidden;
 	margin: 0 auto;
 	margin-bottom: 50px;
-	box-shadow: 0 2px 5px 0 rgba(11, 20, 26, 0.19);
+	box-shadow: 0 2px 5px 3px rgba(11, 20, 26, 0.19);
 
 	top: 19px;
 	width: calc(100vw - 38px);
@@ -16,7 +16,7 @@ const StyledAppContainer = styled.div`
 
 	background-color: #264687;
 	background-repeat: repeat-x;
-	border-radius: 5px;
+	border-radius: 10px;
 	transform-origin: center;
 	// }
 `;

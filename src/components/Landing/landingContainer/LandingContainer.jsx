@@ -5,14 +5,14 @@ import { IconWhite } from 'assets';
 
 const LandingContainer = (props) => {
 	return (
-		<StyledLandingContainer>
-			<StyledLandingHeader>
+		<StyledLandingContainer id="landing-container">
+			<StyledLandingHeader id="landing-header">
 				<div className="icon">
 					<img src={IconWhite} alt="Loqui" />
 				</div>
 				<div className="title">Loqui</div>
 			</StyledLandingHeader>
-			<StyledLandingMain>
+			<StyledLandingMain id="landing-main">
 				<Login {...props} />
 			</StyledLandingMain>
 		</StyledLandingContainer>
