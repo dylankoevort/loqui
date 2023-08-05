@@ -4,6 +4,7 @@ import { StyledChatHeader, StyledUserDetails, StyledProfileImage, StyledIconCont
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { UserIcon } from 'assets';
 
 const ChatHeader = () => {
 	const conversationData = useSelector((state) => state.app.conversation);
@@ -27,7 +28,7 @@ const ChatHeader = () => {
 		<StyledChatHeader>
 			<StyledProfileImage>
 				<div className="image-container">
-					<img src={userDetails.userPhotoUrl} alt="" />
+					<img src={userDetails.userPhotoUrl ? userDetails.userPhotoUrl : UserIcon} alt="" />
 				</div>
 			</StyledProfileImage>
 			<StyledUserDetails>

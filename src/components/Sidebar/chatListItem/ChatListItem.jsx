@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { StyledChatListItem, StyledProfileImage, StyledContentContainer, StyledPrimaryRow, StyledSecondaryRow } from './styledComponents';
 import { setConversation } from 'store/slices';
+import { UserIcon } from 'src/assets';
 
 const ChatListItem = (props) => {
 	const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ChatListItem = (props) => {
 				<StyledProfileImage>
 					<div className="image-container">
 						<div className="image">
-							<img src={photoURL} alt={displayName} />
+							<img src={photoURL ? photoURL : UserIcon} alt={displayName} />
 						</div>
 					</div>
 				</StyledProfileImage>

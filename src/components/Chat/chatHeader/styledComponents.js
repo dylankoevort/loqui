@@ -31,6 +31,8 @@ const StyledProfileImage = styled.div`
 		img {
 			height: 40px;
 			width: 40px;
+			max-width: 100%;
+			display: block;
 			border-radius: 50%;
 		}
 	}

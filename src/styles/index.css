@@ -73,22 +73,29 @@ html {
 	height: 100%;
 	padding: 0;
 	margin: 0;
-	overflow: hidden;
+	overflow: auto;
 
-	::-webkit-scrollbar {
+	&::-webkit-scrollbar {
 		width: 6px;
 	}
-	::-webkit-scrollbar-track {
+	&::-webkit-scrollbar-track {
 		background: var(--background-default);
 	}
-	::-webkit-scrollbar-thumb {
+	&::-webkit-scrollbar-thumb {
 		background: var(--scrollbar);
 	}
 }
 
-.footer {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	margin: 15px;
+.copyright {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
+	color: #cdcdcd;
+	font-size: small;
+	font-weight: bold;
+
+	@media screen and (max-width: 510px) {
+		background-color: white;
+	}
 }

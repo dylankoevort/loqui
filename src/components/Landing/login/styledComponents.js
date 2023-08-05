@@ -5,22 +5,33 @@ const StyledLogin = styled.div`
 	width: 100%;
 	box-sizing: border-box;
 	padding: 64px 60px 30px;
+
+	@media screen and (max-width: 910px) {
+		padding: 64px 50px 30px;
+	}
+
+	@media screen and (max-width: 768px) {
+		padding: 25px 50px 30px;
+		margin-bottom: 0;
+	}
+
+	@media screen and (max-width: 380px) {
+		padding: 25px 50px 30px;
+	}
+
+	@media screen and (max-width: 380px) {
+		padding: 20px 30px 30px;
+	}
 `;
 
 const StyledLoginMain = styled.div`
-	min-height: 40vh;
-	border-bottom: 1px solid var(--border-default);
-
 	margin-bottom: 20px;
 
-	display: flex;
-	flex-grow: 1;
-	align-items: flex-start;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 
 	.left {
 		margin-top: 4px;
-		flex: none;
 		max-width: 556px;
 		height: 260px;
 		max-height: 260px;
@@ -58,21 +69,42 @@ const StyledLoginMain = styled.div`
 				background-color: var(--google-red);
 			}
 		}
+
+		@media screen and (max-width: 769px) {
+			display: block;
+		}
 	}
 
 	.right {
-		margin-left: 60px;
 		position: relative;
+		margin-right: 0;
+		margin-left: auto;
 
 		.qr-code {
-			min-height: 280px;
-			min-width: 280px;
+			height: 280px;
+			width: 280px;
 
 			img {
 				height: 280px;
 				width: 280px;
+				max-width: 100%;
+				display: block;
 			}
 		}
+	}
+
+	@media screen and (max-width: 768px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr;
+
+		.right {
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+
+	@media screen and (max-width: 590px) {
+		gap: 40px;
 	}
 `;
 
