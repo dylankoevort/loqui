@@ -61,20 +61,21 @@ const StyledPrimaryRow = styled.div`
 	.name {
 		display: flex;
 		flex-grow: 1;
-		overflow: hidden;
 		color: var(--text-default);
 		font-weight: 400;
 		font-size: 17px;
-		overflow-wrap: break-word;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.time-stamp {
 		margin-top: 3px;
 		margin-left: 6px;
-		overflow: hidden;
 		line-height: 14px;
-		text-overflow: ellipsis;
 		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		flex: none;
 		max-width: 100%;
 		font-size: 12px;

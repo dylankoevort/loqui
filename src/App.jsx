@@ -15,7 +15,7 @@ import { query, doc, collection, getDocs, setDoc, deleteDoc, orderBy, onSnapshot
 import { auth, provider, db } from 'src/firebase';
 import { AppLayout } from 'components/App';
 import { LandingContainer, LoadingScreen } from 'components/Landing';
-import { setUser, setToken, setSession, clearSession } from 'store/slices';
+import { setUser, setToken, setSession, clearSession, setIsMobile } from 'store/slices';
 
 function App() {
 	const auth = getAuth();
@@ -27,6 +27,14 @@ function App() {
 	const [userAdded, setUserAdded] = useState(false);
 	const progressBarFinished = useSelector((state) => state.app.session.progressBarFinished);
 	const logoutClicked = useSelector((state) => state.app.session.logout);
+
+	window.addEventListener('resize', function () {
+		setViewSize();
+	});
+
+	useEffect(() => {
+		setViewSize();
+	}, []);
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
@@ -69,6 +77,12 @@ function App() {
 			addUser();
 		}
 	}, [currentUser]);
+
+	const setViewSize = () => {
+		const isMobile =
+			(window.innerHeight >= window.innerWidth && window.innerWidth <= 768) || (window.innerHeight <= window.innerWidth && window.innerWidth <= 768);
+		dispatch(setIsMobile(isMobile));
+	};
 
 	const addUser = async () => {
 		if (!currentUser) return;

@@ -15,6 +15,7 @@ const LandingContainer = (props) => {
 			<StyledLandingMain id="landing-main">
 				<Login {...props} />
 			</StyledLandingMain>
+			<div className="copyright">© 2023 | Dylan Koevort</div>
 		</StyledLandingContainer>
 	);
 };

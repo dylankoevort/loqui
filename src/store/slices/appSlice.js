@@ -17,7 +17,10 @@ const initialState = {
 		userDisplayName: '',
 		userUid: '',
 		userLastSeen: null
-	}
+	},
+	isMobile: false,
+	showMobileUsers: true,
+	showMobileConversation: false
 };
 
 const appSlice = createSlice({
@@ -48,10 +51,30 @@ const appSlice = createSlice({
 			state.conversation.userDisplayName = action.payload.userDisplayName;
 			state.conversation.userUid = action.payload.userUid;
 			state.conversation.userLastSeen = action.payload.userLastSeen;
+		},
+		setIsMobile: (state, action) => {
+			state.isMobile = action.payload;
+		},
+		setShowMobileUsers: (state, action) => {
+			state.showMobileUsers = action.payload;
+		},
+		setShowMobileConversation: (state, action) => {
+			state.showMobileConversation = action.payload;
 		}
 	}
 });
 
-export const { setUser, setToken, setSession, setConversation, clearSession, setProgressBarFinished, setLogout } = appSlice.actions;
+export const {
+	setUser,
+	setToken,
+	setSession,
+	setConversation,
+	clearSession,
+	setProgressBarFinished,
+	setLogout,
+	setIsMobile,
+	setShowMobileUsers,
+	setShowMobileConversation
+} = appSlice.actions;
 
 export default appSlice.reducer;

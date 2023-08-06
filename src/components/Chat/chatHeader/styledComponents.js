@@ -12,12 +12,16 @@ const StyledChatHeader = styled.header`
 	z-index: 1000;
 
 	border-left: 1px solid var(--header-panel-border);
+
+	.back-button {
+		margin-right: 10px;
+	}
 `;
 
 const StyledProfileImage = styled.div`
 	padding-right: 15px;
 	flex: none;
-	cursor: pointer;
+	// cursor: pointer;
 
 	.image-container {
 		position: relative;
@@ -44,13 +48,15 @@ const StyledUserDetails = styled.div`
 	flex-grow: 1;
 	justify-content: center;
 	min-width: 0;
-	cursor: pointer;
+	// cursor: pointer;
 
 	.name {
 		overflow: hidden;
 		color: var(--text-default);
 		font-size: 17px;
-		overflow-wrap: break-word;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.last-seen {
@@ -59,6 +65,8 @@ const StyledUserDetails = styled.div`
 		font-size: 13px;
 		min-height: 20px;
 		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 `;
 

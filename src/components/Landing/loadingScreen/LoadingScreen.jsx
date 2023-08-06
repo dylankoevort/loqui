@@ -34,8 +34,8 @@ const LoadingScreen = (props) => {
 	}, []);
 
 	return (
-		<StyledLoadingScreen>
-			<StyledContainer>
+		<StyledLoadingScreen id="loading-screen">
+			<StyledContainer id="loading-container">
 				<div className="content">
 					<div className="center-content">
 						<span className="progress-bar">

@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 
 const StyledAppContainer = styled.div`
-	// @media screen and (min-width: 1441px) {
 	position: relative;
 	display: flex;
 	overflow: hidden;
@@ -18,7 +17,14 @@ const StyledAppContainer = styled.div`
 	background-repeat: repeat-x;
 	border-radius: 10px;
 	transform-origin: center;
-	// }
+
+	@media screen and (max-width: 768px) {
+		top: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 0;
+		background-color: white;
+	}
 `;
 
 export { StyledAppContainer };

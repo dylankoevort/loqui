@@ -5,7 +5,7 @@ import AppContainer from '../appContainer';
 const AppLayout = () => {
 	return (
 		<>
-			<StyledAppLayout>
+			<StyledAppLayout id="app-layout">
 				<AppContainer />
 			</StyledAppLayout>
 		</>

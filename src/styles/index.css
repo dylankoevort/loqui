@@ -23,6 +23,7 @@
 	--text-landing-title: #41525d;
 	--text-landing-steps: #3b4a54;
 	--text-button: #54656f;
+	/* --text- */
 
 	--chat-bubble-outgoing: #b9daff;
 	--chat-bubble-incoming: #fff;
@@ -87,9 +88,10 @@ html {
 }
 
 .copyright {
-	position: absolute;
-	top: 0;
-	right: 0;
+	position: relative;
+	text-align: right;
+	margin-right: 0;
+	margin-left: auto;
 	padding: 10px;
 	color: #cdcdcd;
 	font-size: small;

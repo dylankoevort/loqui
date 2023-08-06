@@ -181,7 +181,7 @@ const MessageContainer = (props) => {
 	}, [conversationData]);
 
 	return (
-		<StyledMessageContainer>
+		<StyledMessageContainer id="message-container">
 			<h4>This is the start of your chat</h4>
 			{/* {mockMessages?.map((message, index) => (
 				<Message key={index} message={message} />

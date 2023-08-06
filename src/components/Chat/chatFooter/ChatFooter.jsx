@@ -33,17 +33,17 @@ const ChatFooter = () => {
 	};
 
 	return (
-		<StyledChatFooter>
-			<StyledFooterActions>
-				<StyledIcons>
+		<StyledChatFooter id="chat-footer">
+			<StyledFooterActions id="footer-actions">
+				{/* <StyledIcons id="footer-icons">
 					<IconButton>
 						<EmojiEmotionsOutlinedIcon />
 					</IconButton>
 					<IconButton>
 						<AddIcon />
 					</IconButton>
-				</StyledIcons>
-				<StyledComposeMessage>
+				</StyledIcons> */}
+				<StyledComposeMessage id="compose-message">
 					<div className="message-input">
 						<div className="input-field">
 							<input type="text" placeholder="Type a message" value={message} onChange={(e) => setMessage(e.target.value)} />

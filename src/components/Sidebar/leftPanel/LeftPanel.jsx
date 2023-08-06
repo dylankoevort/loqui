@@ -6,7 +6,7 @@ import ChatList from '../chatList';
 const LeftPanel = () => {
 	return (
 		<>
-			<StyledLeftPanel>
+			<StyledLeftPanel id="left-panel">
 				<LeftPanelHeader />
 				<ChatList />
 			</StyledLeftPanel>
