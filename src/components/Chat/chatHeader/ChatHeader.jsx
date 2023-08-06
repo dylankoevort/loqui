@@ -50,14 +50,14 @@ const ChatHeader = () => {
 				<div className="name">{userDetails.userDisplayName}</div>
 				{/* <div className="last-seen">{'last seen today at ' + userDetails.userLastSeen}</div> */}
 			</StyledUserDetails>
-			<StyledIconContainer id="chat-icon-container">
+			{/* <StyledIconContainer id="chat-icon-container">
 				<IconButton>
 					<SearchIcon />
 				</IconButton>
 				<IconButton>
 					<MoreVertIcon />
 				</IconButton>
-			</StyledIconContainer>
+			</StyledIconContainer> */}
 		</StyledChatHeader>
 	);
 };
