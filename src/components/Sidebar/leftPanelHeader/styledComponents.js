@@ -11,6 +11,14 @@ const StyledLeftPanelHeader = styled.div`
 	padding: 10px 16px;
 	background-color: var(--header-panel-background);
 	z-index: 1000;
+
+	h4 {
+		font-weight: 500;
+		color: var(--text-default);
+		margin-left: 10px;
+		margin-right: 10px;
+		text-align: right;
+	}
 `;
 
 const StyledProfileImage = styled.div`

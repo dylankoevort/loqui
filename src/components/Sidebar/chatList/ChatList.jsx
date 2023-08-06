@@ -6,7 +6,6 @@ import { query, collection, orderBy, onSnapshot, limit } from 'firebase/firestor
 import { db } from 'src/firebase';
 
 const ChatList = () => {
-	const displayName = useSelector((state) => state.app.session.displayName);
 	const currentUserUid = useSelector((state) => state.app.session.uid);
 
 	const [chatUsers, setChatUsers] = useState([]);
@@ -32,14 +31,14 @@ const ChatList = () => {
 
 	return (
 		<>
-			<StyledSearchBar>
-				<h3>{displayName}</h3>
+			<StyledSearchBar id="search-bar">
+				<h4>{'Users online: ' + (chatUsers.length + 1)}</h4>
 			</StyledSearchBar>
-			<StyledChatList>
+			<StyledChatList id="chat-list">
 				{chatUsers.map((user) => (
 					<ChatListItem key={user.uid} user={user} />
 				))}
-				<StyledInfoMessage>
+				<StyledInfoMessage id="info-message">
 					<div className="text">Your personal messages may or may not be encrypted.</div>
 				</StyledInfoMessage>
 			</StyledChatList>

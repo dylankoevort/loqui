@@ -57,8 +57,8 @@ const StyledContainer = styled.div`
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			margin-left: auto;
-			margin-right: auto;
+			margin-left: 15px;
+			margin-right: 15px;
 			position: absolute;
 			bottom: 50px;
 			left: 0;

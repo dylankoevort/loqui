@@ -4,7 +4,7 @@ import { IconClear } from 'assets';
 
 const ConversationCover = () => {
 	return (
-		<StyledConversationCover>
+		<StyledConversationCover id="conversation-cover">
 			<img src={IconClear} alt="" />
 			<h1>Loqui</h1>
 			<p>

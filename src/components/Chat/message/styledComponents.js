@@ -20,6 +20,11 @@ const StyledMessageRow = styled.div`
 	&.message-in {
 		align-items: flex-start;
 	}
+
+	@media screen and (max-width: 768px) {
+		padding-right: 4%;
+		padding-left: 4%;
+	}
 `;
 
 const StyledMessage = styled.div`
@@ -30,6 +35,8 @@ const StyledMessage = styled.div`
 	font-size: 14.2px;
 	line-height: 19px;
 	color: var(--text-default);
+
+	max-width: 90%;
 
 	@media screen and (min-width: 1301px) {
 		max-width: 65%;
@@ -69,6 +76,10 @@ const StyledMessage = styled.div`
 				overflow-wrap: break-word;
 				white-space: pre-wrap;
 				margin-right: 30px;
+
+				@media screen and (max-width: 768px) {
+					margin-right: 10px;
+				}
 			}
 
 			.timestamp {

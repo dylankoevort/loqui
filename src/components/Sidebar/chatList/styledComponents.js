@@ -20,6 +20,11 @@ const StyledSearchBar = styled.div`
 	height: 49px;
 	transition: box-shadow 0.18s ease-out, background-color 0.25s ease-out;
 	border-bottom: 1px solid var(--chat-list-border);
+
+	h4 {
+		font-weight: 600;
+		color: var(--text-default);
+	}
 `;
 
 const StyledInfoMessage = styled.div`
@@ -37,6 +42,7 @@ const StyledInfoMessage = styled.div`
 		font-size: 0.75rem;
 		word-break: break-word;
 		line-height: 1.3333;
+		text-align: center;
 `;
 
 export { StyledChatList, StyledSearchBar, StyledInfoMessage };

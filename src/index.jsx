@@ -9,7 +9,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<App />
-			<div className="copyright">© 2023 | Dylan Koevort</div>
 		</Provider>
 	</React.StrictMode>
 );

@@ -15,7 +15,7 @@ const StyledMessageContainer = styled.div`
 
 	flex-direction: column;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 	transition: background 0.3s ease-out 0.1s;
 	padding-left: 0;
 	padding-bottom: 8px;

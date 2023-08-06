@@ -8,9 +8,19 @@ const StyledLeftPanel = styled.div`
 	overflow: visible;
 	height: 100%;
 
-	@media screen and (min-width: 1300px) {
+	@media screen and (min-width: 960px) {
 		flex: 0 0 30%;
 		max-width: 30%;
+	}
+
+	@media screen and (min-width: 960px) {
+		flex: 0 0 30%;
+		max-width: 30%;
+	}
+
+	@media screen and (max-width: 768px) {
+		width: 100%;
+		height: 100%;
 	}
 `;
 

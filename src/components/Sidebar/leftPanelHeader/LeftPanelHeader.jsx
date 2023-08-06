@@ -13,6 +13,7 @@ import { setLogout } from 'store/slices';
 const LeftPanelHeader = () => {
 	const dispatch = useDispatch();
 	const userImage = useSelector((state) => state.app.session.photoURL);
+	const displayName = useSelector((state) => state.app.session.displayName);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
@@ -33,16 +34,19 @@ const LeftPanelHeader = () => {
 	const options = ['Logout'];
 	return (
 		<>
-			<StyledLeftPanelHeader>
-				<StyledProfileImage>
+			<StyledLeftPanelHeader id="left-panel-header">
+				<StyledProfileImage id="left-panel-header-image">
 					<div className="image-container">
 						<div className="image">
 							<img src={userImage} alt="" />
 						</div>
 					</div>
 				</StyledProfileImage>
-				<StyledIconContainer>
-					<div className="icon">
+				<div>
+					<h4>{'Hello, ' + displayName}</h4>
+				</div>
+				<StyledIconContainer id="left-panel-header-icons">
+					{/* <div className="icon">
 						<IconButton>
 							<PeopleIcon />
 						</IconButton>
@@ -56,7 +60,7 @@ const LeftPanelHeader = () => {
 						<IconButton>
 							<ChatIcon />
 						</IconButton>
-					</div>
+					</div> */}
 					<div className="icon">
 						<IconButton
 							aria-label="more"

@@ -7,7 +7,7 @@ import MessageContainer from '../messageContainer';
 const ChatContainer = () => {
 	return (
 		<>
-			<StyledChatContainer>
+			<StyledChatContainer id="chat-container">
 				<ChatHeader />
 				<MessageContainer />
 				<ChatFooter />
