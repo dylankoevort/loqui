@@ -59,6 +59,10 @@ body {
 
 	background-color: var(--landing-page-background);
 	/* background-image: linear-gradient(180deg, var(--page-background-colour), var(--page-background-colour-darker)); */
+
+	@media screen and (max-width: 510px) {
+		background-color: var(--background-default);
+	}
 }
 
 #root {
@@ -88,10 +92,10 @@ html {
 }
 
 .copyright {
-	position: relative;
+	position: absolute;
 	text-align: right;
-	margin-right: 0;
-	margin-left: auto;
+	top: 0;
+	right: 0;
 	padding: 10px;
 	color: #cdcdcd;
 	font-size: small;
