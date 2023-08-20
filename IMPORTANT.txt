@@ -1,0 +1,13 @@
+20 Aug 2023
+
+A big change to the structure and architecture of the Loqui web app will be happening. There will be slight change in the layout and flow of the application
+in order to make a more seamless experience for users. Google authentication will be removed to make the application more accessible and easier to access.
+
+These changes will make the application more stable, and more scalable for the future.
+
+A couple of integrations planned for Loqui include:
+
+-   Socket.IO (For improved and more efficient real-time messaging capabilities)
+-   WebRTC (For support of video and voice communication in the future)
+
+Dylan
