@@ -1,6 +1,7 @@
 import appSlice from './appSlice';
 import {
 	setUser,
+	setLoading,
 	setToken,
 	setSession,
 	setConversation,
@@ -14,6 +15,7 @@ import {
 export { appSlice };
 export {
 	setUser,
+	setLoading,
 	setToken,
 	setSession,
 	setConversation,

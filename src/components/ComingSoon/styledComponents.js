@@ -7,8 +7,9 @@ const StyledComingSoon = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--background-light);
+	background-color: #eee;
 	text-align: center;
+	color: #333;
 
 	.logo {
 		img {
@@ -18,14 +19,14 @@ const StyledComingSoon = styled.div`
 	}
 
 	.loqui {
-		font-size: 100px;
+		font-size: 70px;
 		font-weight: 400;
-		padding-bottom: 15%;
+		padding-bottom: 10%;
 	}
 
 	.coming-soon {
-		font-size: 70px;
-		font-weight: 800;
+		font-size: 50px;
+		font-weight: 700;
 	}
 
 	.copyright {

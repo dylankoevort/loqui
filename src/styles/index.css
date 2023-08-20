@@ -43,14 +43,4 @@ html {
 	padding: 0;
 	margin: 0;
 	overflow: auto;
-
-	&::-webkit-scrollbar {
-		width: 6px;
-	}
-	&::-webkit-scrollbar-track {
-		background: var(--background-default);
-	}
-	&::-webkit-scrollbar-thumb {
-		background: var(--scrollbar);
-	}
 }

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	user: null,
+	loading: false,
 	session: {
 		uid: null,
 		displayName: '',
@@ -29,6 +30,9 @@ const appSlice = createSlice({
 	reducers: {
 		setUser: (state, action) => {
 			state.user = action.payload;
+		},
+		setLoading: (state, action) => {
+			state.loading = action.payload;
 		},
 		setToken: (state, action) => {
 			state.token = action.payload;
@@ -66,6 +70,7 @@ const appSlice = createSlice({
 
 export const {
 	setUser,
+	setLoading,
 	setToken,
 	setSession,
 	setConversation,
