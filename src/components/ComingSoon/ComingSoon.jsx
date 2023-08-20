@@ -8,7 +8,7 @@ const ComingSoon = () => {
 			<span className="logo">
 				<img src={IconClear} alt="Loqui" />
 			</span>
-			<span className="loqui">Loqui</span>
+			<span className="loqui">Loqui Chat</span>
 			<span className="coming-soon">Coming Soon</span>
 			<span className="copyright">© 2023 | Dylan Koevort</span>
 		</StyledComingSoon>

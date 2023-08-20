@@ -13,16 +13,17 @@ import {
 } from 'firebase/auth';
 import { query, doc, collection, getDocs, setDoc, deleteDoc, orderBy, onSnapshot, limit, addDoc, where, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { auth, provider, db } from 'src/firebase';
-import { AppLayout } from 'components/App';
-import { LandingContainer, LoadingScreen } from 'components/Landing';
-import { setUser, setToken, setSession, clearSession, setIsMobile } from 'store/slices';
-import LandingNew from './components/LandingNew';
+import { AppContainer, AppLayout } from 'components/App';
+import { setUser, setIsMobile, setLoading } from 'store/slices';
+import Landing from './components/Landing';
 import ComingSoon from './components/ComingSoon';
+import Loading from './components/Loading/Loading';
 
 function App() {
 	const auth = getAuth();
 	const dispatch = useDispatch();
 	const logoutClicked = useSelector((state) => state.app.session.logout);
+	const loading = useSelector((state) => state.app.loading);
 
 	window.addEventListener('resize', function () {
 		setViewSize();
@@ -45,11 +46,14 @@ function App() {
 	};
 
 	const render = () => {
-		// return <LandingNew />;
+		if (loading) {
+			return <Loading />;
+		}
+		// return <Landing />;
 		return <ComingSoon />;
 	};
 
-	return render();
+	return <>{render()}</>;
 }
 
 export default App;
