@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 
 const StyledChatList = styled.div`
-	background-color: var(--background-default);
     width 100%;
     height: 100%;
     overflow-y: auto;
@@ -9,7 +8,6 @@ const StyledChatList = styled.div`
 `;
 
 const StyledSearchBar = styled.div`
-	background-color: var(--background-default);
 	padding-left: 12px;
 	position: relative;
 	z-index: 100;
@@ -19,11 +17,10 @@ const StyledSearchBar = styled.div`
 	align-items: center;
 	height: 49px;
 	transition: box-shadow 0.18s ease-out, background-color 0.25s ease-out;
-	border-bottom: 1px solid var(--chat-list-border);
+	border-bottom: 1px solid var(--secondary);
 
 	h4 {
 		font-weight: 600;
-		color: var(--text-default);
 	}
 `;
 
@@ -34,7 +31,7 @@ const StyledInfoMessage = styled.div`
 	justify-content: center;
 	padding-top: 10px;
 	box-sizing: border-box;
-	border-top: 1px solid var(--chat-list-border);
+	border-top: 1px solid var(--secondary);
 
 	.text{
 		white-space: normal;

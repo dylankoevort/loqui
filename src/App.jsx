@@ -22,6 +22,7 @@ import ChatView from 'components/ChatView';
 function App() {
 	const dispatch = useDispatch();
 	const loading = useSelector((state) => state.app.loading);
+	const user = useSelector((state) => state.app.user);
 
 	window.addEventListener('resize', function () {
 		setViewSize();
@@ -37,11 +38,23 @@ function App() {
 		dispatch(setIsMobile(isMobile));
 	};
 
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch(setLoading(false));
+		}, 4000);
+	}, [loading]);
+
 	const render = () => {
 		if (loading) {
 			return <Loading />;
 		}
-		// return <Landing />;
+
+		if (user.username !== '' && user.colour !== '') {
+			return <ChatView />;
+		}
+
+		return <Landing />;
+
 		// return <Loading />;
 		return <ChatView />;
 		// return <ComingSoon />;

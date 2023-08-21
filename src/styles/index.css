@@ -15,7 +15,8 @@
 	--secondary-dark: #01030e;
 	--accent-dark: #7f95f5;
 
-	--shadow-color: 0deg 0% 0%;
+	--primary: #eee;
+	--secondary: #333;
 }
 
 body {
@@ -27,8 +28,8 @@ body {
 	-webkit-text-size-adjust: 100%;
 	user-select: none;
 
-	background-color: var(--landing-page-background);
-	color: var(--text-light);
+	background-color: var(--primary);
+	color: var(--secondary);
 }
 
 #root {

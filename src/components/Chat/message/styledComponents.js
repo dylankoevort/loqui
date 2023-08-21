@@ -34,8 +34,6 @@ const StyledMessage = styled.div`
 	flex: none;
 	font-size: 14.2px;
 	line-height: 19px;
-	color: var(--text-default);
-
 	max-width: 90%;
 
 	@media screen and (min-width: 1301px) {
@@ -49,12 +47,12 @@ const StyledMessage = styled.div`
 		z-index: 200;
 
 		&.outgoing {
-			background-color: var(--chat-bubble-outgoing);
+			background-color: green;
 			border-top-right-radius: 0;
 		}
 
 		&.incoming {
-			background-color: var(--chat-bubble-incoming);
+			background-color: white;
 			border-top-left-radius: 0;
 		}
 
@@ -91,7 +89,6 @@ const StyledMessage = styled.div`
 				display: flex;
 				font-size: 0.6875rem;
 				white-space: nowrap;
-				color: var(--text-secondary);
 				align-items: center;
 				height: 15px;
 				line-height: 15px;
