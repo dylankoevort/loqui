@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from 'src/firebase';
 import { StyledLanding } from './styledComponents';
 import { Button, Form, Input, ColorPicker } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { setUser, setLoading } from 'store/slices';
 import { IconClear } from 'assets';
+import { AES } from 'crypto-js';
 
 const Landing = () => {
 	const dispatch = useDispatch();
@@ -14,14 +17,30 @@ const Landing = () => {
 	const handleSubmit = async (values) => {
 		const user = {
 			username: values.username,
-			colour: typeof colorHex === 'string' ? colorHex : colorHex.toHexString()
+			colour: typeof colorHex === 'string' ? colorHex : colorHex.toHexString(),
+			uid: crypto.randomUUID()
 		};
 		console.log(user);
 
-		dispatch(setUser(user));
-		dispatch(setLoading(true));
+		// TODO Need to add check for if a user is deleted from firebase, their local must logout
+		await addUser(user);
+	};
 
-		form.resetFields();
+	const addUser = async (user) => {
+		await setDoc(doc(db, 'users', user.uid), user)
+			.then(() => {
+				const encryptedUser = AES.encrypt(JSON.stringify(user), 'sdfjsdfmlsakd;h98pasdfhjg9384ty453l;iuh').toString();
+				window.localStorage.setItem('user', encryptedUser);
+
+				dispatch(setUser(user));
+				dispatch(setLoading(true));
+
+				form.resetFields();
+			})
+			.catch((error) => {
+				console.error(error);
+				alert('User could not be added. Contact support if this issue persists.');
+			});
 	};
 
 	return (

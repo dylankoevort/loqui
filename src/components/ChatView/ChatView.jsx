@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { StyledChatView, StyledAppContainer } from './styledComponents';
-import LeftPanel from 'components/Sidebar/leftPanel';
-import ChatContainer from 'components/Chat/chatContainer';
-import ConversationCover from 'components/Chat/conversationCover';
+import LeftPanel from 'components/ChatView/Sidebar/leftPanel';
+import ChatContainer from 'components/ChatView/Chat/chatContainer';
+import ConversationCover from 'components/ChatView/Chat/conversationCover';
 
 const ChatView = () => {
 	const conversationData = useSelector((state) => state.app.conversation);

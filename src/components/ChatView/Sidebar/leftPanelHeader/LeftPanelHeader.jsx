@@ -9,11 +9,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogout } from 'store/slices';
+import { UserIcon } from 'src/assets';
 
 const LeftPanelHeader = () => {
 	const dispatch = useDispatch();
-	const userImage = useSelector((state) => state.app.session.photoURL);
-	const displayName = useSelector((state) => state.app.session.displayName);
+	const username = useSelector((state) => state.app.user.username);
+	const userColour = useSelector((state) => state.app.user.colour);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
@@ -31,6 +32,25 @@ const LeftPanelHeader = () => {
 		if (option === 'Logout') dispatch(setLogout(true));
 	};
 
+	const UserIcon = () => {
+		return (
+			<div
+				className="circle"
+				style={{
+					height: '100%',
+					width: '100%',
+					borderRadius: '50%',
+					backgroundColor: userColour,
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
+				}}
+			>
+				<span style={{ color: 'white', fontSize: '1.5rem' }}>{username.charAt(0).toUpperCase() + username.charAt(1).toLowerCase()}</span>
+			</div>
+		);
+	};
+
 	const options = ['Logout'];
 	return (
 		<>
@@ -38,29 +58,14 @@ const LeftPanelHeader = () => {
 				<StyledProfileImage id="left-panel-header-image">
 					<div className="image-container">
 						<div className="image">
-							<img src={userImage} alt="" />
+							<UserIcon />
 						</div>
 					</div>
 				</StyledProfileImage>
 				<div>
-					<h4>{'Hello, ' + displayName}</h4>
+					<h4>{'Hello, ' + username}</h4>
 				</div>
 				<StyledIconContainer id="left-panel-header-icons">
-					{/* <div className="icon">
-						<IconButton>
-							<PeopleIcon />
-						</IconButton>
-					</div>
-					<div className="icon">
-						<IconButton>
-							<DonutLargeIcon />
-						</IconButton>
-					</div>
-					<div className="icon">
-						<IconButton>
-							<ChatIcon />
-						</IconButton>
-					</div> */}
 					<div className="icon">
 						<IconButton
 							aria-label="more"

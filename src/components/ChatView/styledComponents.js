@@ -4,9 +4,11 @@ const StyledChatView = styled.div`
 	position: relative;
 	width: 100%;
 	height: 100%;
+	background-color: #aeb9ff;
 `;
 
 const StyledAppContainer = styled.div`
+	background-color: var(--primary);
 	position: relative;
 	display: flex;
 	overflow: hidden;

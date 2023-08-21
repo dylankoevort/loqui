@@ -6,6 +6,7 @@ const initialState = {
 		colour: ''
 	},
 	loading: false,
+	logout: false,
 
 	session: {
 		uid: null,
@@ -38,6 +39,9 @@ const appSlice = createSlice({
 		setLoading: (state, action) => {
 			state.loading = action.payload;
 		},
+		setLogout: (state, action) => {
+			state.logout = action.payload;
+		},
 		setToken: (state, action) => {
 			state.token = action.payload;
 		},
@@ -50,9 +54,7 @@ const appSlice = createSlice({
 		setProgressBarFinished: (state, action) => {
 			state.session.progressBarFinished = action.payload;
 		},
-		setLogout: (state, action) => {
-			state.session.logout = action.payload;
-		},
+
 		setConversation: (state, action) => {
 			state.conversation.messages = action.payload.messages;
 			state.conversation.userPhotoUrl = action.payload.userPhotoUrl;
