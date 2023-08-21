@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { StyledLanding } from './styledComponents';
 import { Button, Form, Input, ColorPicker } from 'antd';
@@ -6,7 +6,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { setUser, setLoading } from 'store/slices';
 import { IconClear } from 'assets';
 
-const Landing = ({ setLoadingStatus }) => {
+const Landing = () => {
 	const dispatch = useDispatch();
 	const [form] = Form.useForm();
 	const [colorHex, setColorHex] = useState('#1677ff');
@@ -17,6 +17,8 @@ const Landing = ({ setLoadingStatus }) => {
 			colour: typeof colorHex === 'string' ? colorHex : colorHex.toHexString()
 		};
 		console.log(user);
+
+		dispatch(setUser(user));
 		dispatch(setLoading(true));
 
 		form.resetFields();

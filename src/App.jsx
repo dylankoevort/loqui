@@ -13,16 +13,14 @@ import {
 } from 'firebase/auth';
 import { query, doc, collection, getDocs, setDoc, deleteDoc, orderBy, onSnapshot, limit, addDoc, where, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { auth, provider, db } from 'src/firebase';
-import { AppContainer, AppLayout } from 'components/App';
 import { setUser, setIsMobile, setLoading } from 'store/slices';
 import Landing from './components/Landing';
 import ComingSoon from './components/ComingSoon';
-import Loading from './components/Loading/Loading';
+import Loading from './components/Loading';
+import ChatView from 'components/ChatView';
 
 function App() {
-	const auth = getAuth();
 	const dispatch = useDispatch();
-	const logoutClicked = useSelector((state) => state.app.session.logout);
 	const loading = useSelector((state) => state.app.loading);
 
 	window.addEventListener('resize', function () {
@@ -32,12 +30,6 @@ function App() {
 	useEffect(() => {
 		setViewSize();
 	}, []);
-
-	useEffect(() => {
-		if (logoutClicked) {
-			handleLogout();
-		}
-	}, [logoutClicked]);
 
 	const setViewSize = () => {
 		const isMobile =
@@ -50,7 +42,9 @@ function App() {
 			return <Loading />;
 		}
 		// return <Landing />;
-		return <ComingSoon />;
+		// return <Loading />;
+		return <ChatView />;
+		// return <ComingSoon />;
 	};
 
 	return <>{render()}</>;

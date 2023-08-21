@@ -1,5 +1,11 @@
 import { styled } from 'styled-components';
 
+const StyledChatView = styled.div`
+	position: relative;
+	width: 100%;
+	height: 100%;
+`;
+
 const StyledAppContainer = styled.div`
 	position: relative;
 	display: flex;
@@ -27,4 +33,4 @@ const StyledAppContainer = styled.div`
 	}
 `;
 
-export { StyledAppContainer };
+export { StyledChatView, StyledAppContainer };

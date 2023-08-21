@@ -14,6 +14,8 @@
 	--primary-dark: #0c2492;
 	--secondary-dark: #01030e;
 	--accent-dark: #7f95f5;
+
+	--shadow-color: 0deg 0% 0%;
 }
 
 body {
