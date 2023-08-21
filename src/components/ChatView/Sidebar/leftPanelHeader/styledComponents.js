@@ -40,12 +40,12 @@ const StyledProfileImage = styled.div`
 		transition: opacity 0.15s ease-out;
 		border: 1px solid white;
 
-		img {
-			height: 40px;
-			width: 40px;
-			max-width: 100%;
-			display: block;
-		}
+		// img {
+		// 	height: 40px;
+		// 	width: 40px;
+		// 	max-width: 100%;
+		// 	display: block;
+		// }
 	}
 `;
 
