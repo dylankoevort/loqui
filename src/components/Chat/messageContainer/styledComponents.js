@@ -1,11 +1,9 @@
 import { styled } from 'styled-components';
 
 const StyledMessageContainer = styled.div`
-	background: var(--chat-background);
 	height: calc(100% - 122px);
 	width: 100%;
 
-	border: 1px solid var(--border-default);
 	display: flex;
 	position: relative;
 	z-index: 1;

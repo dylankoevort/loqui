@@ -8,8 +8,7 @@ const StyledConversationCover = styled.div`
 	padding: 10px;
 	height: 100%;
 	width: 100%;
-	background-color: var(--conversation-cover-background);
-	color: var(--conversation-cover-text);
+	border-left: 1px solid var(--secondary);
 
 	img {
 		height: 150px;

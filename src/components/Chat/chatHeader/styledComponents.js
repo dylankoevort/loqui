@@ -8,10 +8,9 @@ const StyledChatHeader = styled.header`
 	width: 100%;
 	box-sizing: border-box;
 	padding: 10px 16px;
-	background-color: var(--header-panel-background);
 	z-index: 1000;
 
-	border-left: 1px solid var(--header-panel-border);
+	border-bottom: 1px solid var(--secondary);
 
 	.back-button {
 		margin-right: 10px;
@@ -21,7 +20,6 @@ const StyledChatHeader = styled.header`
 const StyledProfileImage = styled.div`
 	padding-right: 15px;
 	flex: none;
-	// cursor: pointer;
 
 	.image-container {
 		position: relative;
@@ -52,7 +50,6 @@ const StyledUserDetails = styled.div`
 
 	.name {
 		overflow: hidden;
-		color: var(--text-default);
 		font-size: 17px;
 		white-space: nowrap;
 		overflow: hidden;
@@ -61,7 +58,6 @@ const StyledUserDetails = styled.div`
 
 	.last-seen {
 		text-overflow: ellipsis;
-		color: var(--text-secondary);
 		font-size: 13px;
 		min-height: 20px;
 		white-space: nowrap;

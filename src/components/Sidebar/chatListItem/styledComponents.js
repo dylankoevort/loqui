@@ -12,7 +12,7 @@ const StyledChatListItem = styled.div`
 	cursor: pointer;
 
 	&:hover {
-		background-color: var(--chat-list-hover);
+		background-color: #ddd;
 	}
 `;
 
@@ -48,7 +48,7 @@ const StyledContentContainer = styled.div`
 	flex-grow: 1;
 	justify-content: center;
 	min-width: 0;
-	border-top: 1px solid var(--chat-list-border);
+	border-top: 1px solid var(--secondary);
 	padding-right: 15px;
 `;
 
@@ -61,7 +61,6 @@ const StyledPrimaryRow = styled.div`
 	.name {
 		display: flex;
 		flex-grow: 1;
-		color: var(--text-default);
 		font-weight: 400;
 		font-size: 17px;
 		white-space: nowrap;
@@ -80,7 +79,6 @@ const StyledPrimaryRow = styled.div`
 		max-width: 100%;
 		font-size: 12px;
 		line-height: 20px;
-		color: var(--text-secondary);
 	}
 `;
 const StyledSecondaryRow = styled.div`
@@ -90,8 +88,6 @@ const StyledSecondaryRow = styled.div`
 	min-height: 20px;
 	font-size: 13px;
 	line-height: 20px;
-	color: var(--text-secondary);
-
 	.message {
 		flex-grow: 1;
 		overflow: hidden;

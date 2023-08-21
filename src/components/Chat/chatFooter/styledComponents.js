@@ -7,8 +7,7 @@ const StyledChatFooter = styled.footer`
 	box-sizing: border-box;
 	flex: none;
 	z-index: 1000;
-	background-color: var(--header-panel-background);
-	border-left: 1px solid var(--border-default);
+	border-top: 1px solid var(--secondary);
 
 	display: flex;
 	flex-direction: row;
@@ -49,8 +48,7 @@ const StyledComposeMessage = styled.div`
 	.message-input {
 		padding: 9px 12px;
 		margin: 5px 8px;
-		background-color: var(--chat-message-compose-background);
-		border: 1px solid var(--chat-message-compose-background);
+		border: 1px solid var(--secondary);
 		border-radius: 8px;
 		box-sizing: border-box;
 		flex: 1 1 auto;
@@ -82,19 +80,16 @@ const StyledComposeMessage = styled.div`
 				overflow-y: auto;
 				font-size: 0.9375rem;
 				border: none;
-				color: var(--chat-message-compose-colour);
+				background: none;
 
 				&::placeholder {
-					color: var(--chat-message-placeholder);
 					opacity: 1;
 				}
 
 				&:-ms-input-placeholder {
-					color: var(--chat-message-placeholder);
 				}
 
 				&::-ms-input-placeholder {
-					color: var(--chat-message-placeholder);
 				}
 			}
 		}

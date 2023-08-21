@@ -7,6 +7,7 @@ const StyledLeftPanel = styled.div`
 	z-index: 101;
 	overflow: visible;
 	height: 100%;
+	border-right: 1px solid var(--secondary);
 
 	@media screen and (min-width: 960px) {
 		flex: 0 0 30%;

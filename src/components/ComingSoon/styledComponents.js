@@ -7,7 +7,7 @@ const StyledComingSoon = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #eee;
+	background-color: var(--primary);
 	text-align: center;
 	color: #333;
 
