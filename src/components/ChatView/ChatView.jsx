@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { StyledAppContainer } from './styledComponents';
+import { StyledChatView, StyledAppContainer } from './styledComponents';
 import LeftPanel from 'components/Sidebar/leftPanel';
 import ChatContainer from 'components/Chat/chatContainer';
 import ConversationCover from 'components/Chat/conversationCover';
 
-const AppContainer = () => {
+const ChatView = () => {
 	const conversationData = useSelector((state) => state.app.conversation);
 	const [showConversation, setShowConversation] = useState(false);
 	const isMobile = useSelector((state) => state.app.isMobile);
@@ -22,21 +22,23 @@ const AppContainer = () => {
 	}, [isMobile]);
 
 	return (
-		<StyledAppContainer id="app-container">
-			{showMobile && (
-				<>
-					{showMobileUsers && <LeftPanel />}
-					{showMobileConversation && <ChatContainer />}
-				</>
-			)}
-			{!showMobile && (
-				<>
-					<LeftPanel />
-					{showConversation ? <ChatContainer /> : <ConversationCover />}
-				</>
-			)}
-		</StyledAppContainer>
+		<StyledChatView>
+			<StyledAppContainer>
+				{showMobile && (
+					<>
+						{showMobileUsers && <LeftPanel />}
+						{showMobileConversation && <ChatContainer />}
+					</>
+				)}
+				{!showMobile && (
+					<>
+						<LeftPanel />
+						{showConversation ? <ChatContainer /> : <ConversationCover />}
+					</>
+				)}
+			</StyledAppContainer>
+		</StyledChatView>
 	);
 };
 
-export default AppContainer;
+export default ChatView;
