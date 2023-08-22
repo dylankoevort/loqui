@@ -21,6 +21,10 @@ const StyledLanding = styled.div`
 		font-weight: 400;
 		padding-bottom: 100px;
 		color: #333;
+
+		@media screen and (max-width: 768px) {
+			font-size: 50px;
+		}
 	}
 
 	.form-container {

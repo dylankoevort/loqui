@@ -6,7 +6,6 @@ const StyledConversationCover = styled.div`
 	justify-content: center;
 	align-items: center;
 	padding: 10px;
-	height: 100%;
 	width: 100%;
 	border-left: 1px solid var(--secondary);
 
