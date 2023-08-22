@@ -8,6 +8,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { setUser, setLoading } from 'store/slices';
 import { IconClear } from 'assets';
 import { AES } from 'crypto-js';
+import { v4 as uuid } from 'uuid';
 
 const Landing = () => {
 	const dispatch = useDispatch();
@@ -15,12 +16,15 @@ const Landing = () => {
 	const [colorHex, setColorHex] = useState('#1677ff');
 
 	const handleSubmit = async (values) => {
+		if (values.username.trim() === '') {
+			return;
+		}
+
 		const user = {
-			username: values.username,
+			username: values.username.trim(),
 			colour: typeof colorHex === 'string' ? colorHex : colorHex.toHexString(),
-			uid: crypto.randomUUID()
+			uid: uuid()
 		};
-		console.log(user);
 
 		// TODO Need to add check for if a user is deleted from firebase, their local must logout
 		await addUser(user);
@@ -40,6 +44,7 @@ const Landing = () => {
 			.catch((error) => {
 				console.error(error);
 				alert('User could not be added. Contact support if this issue persists.');
+				alert(error);
 			});
 	};
 

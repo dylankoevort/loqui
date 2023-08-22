@@ -40,7 +40,7 @@ function App() {
 	useEffect(() => {
 		setTimeout(() => {
 			dispatch(setLoading(false));
-		}, 4000);
+		}, 3500);
 	}, [loading]);
 
 	useEffect(() => {
@@ -67,19 +67,19 @@ function App() {
 	};
 
 	const render = () => {
-		// if (loading) {
-		// 	return <Loading />;
-		// }
+		if (loading) {
+			return <Loading />;
+		}
 
-		// if (user.username !== '' && user.colour !== '') {
-		// 	return <ChatView />;
-		// }
+		if (user.username !== '' && user.colour !== '') {
+			return <ChatView />;
+		}
 
-		// return <Landing />;
+		return <Landing />;
 
 		// return <Loading />;
 		// return <ChatView />;
-		return <ComingSoon />;
+		// return <ComingSoon />;
 	};
 
 	return <>{render()}</>;

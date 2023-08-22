@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { StyledChatView, StyledAppContainer } from './styledComponents';
-import LeftPanel from 'components/ChatView/Sidebar/leftPanel';
+import UsersPanel from 'components/ChatView/UserPanel/usersPanel';
 import ChatContainer from 'components/ChatView/Chat/chatContainer';
 import ConversationCover from 'components/ChatView/Chat/conversationCover';
 
@@ -26,13 +26,13 @@ const ChatView = () => {
 			<StyledAppContainer>
 				{showMobile && (
 					<>
-						{showMobileUsers && <LeftPanel />}
+						{showMobileUsers && <UsersPanel />}
 						{showMobileConversation && <ChatContainer />}
 					</>
 				)}
 				{!showMobile && (
 					<>
-						<LeftPanel />
+						<UsersPanel />
 						{showConversation ? <ChatContainer /> : <ConversationCover />}
 					</>
 				)}
