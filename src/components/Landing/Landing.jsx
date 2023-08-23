@@ -28,7 +28,8 @@ const Landing = () => {
 					createdAt: userCredential.user.metadata.createdAt,
 					creationTime: userCredential.user.metadata.creationTime,
 					lastLoginAt: userCredential.user.metadata.lastLoginAt,
-					lastSignInTime: userCredential.user.metadata.lastSignInTime
+					lastSignInTime: userCredential.user.metadata.lastSignInTime,
+					timestamp: new Date()
 				};
 
 				await addUser(newUser);

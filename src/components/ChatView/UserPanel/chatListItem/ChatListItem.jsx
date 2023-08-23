@@ -7,15 +7,14 @@ import { UserIcon } from 'src/assets';
 const ChatListItem = (props) => {
 	const dispatch = useDispatch();
 	const { user } = props;
-	const { displayName, timeStamp, lastMessage, photoURL, uid } = user;
+	const { username, uid, colour } = user;
 	const isMobile = useSelector((state) => state.app.isMobile);
 
 	const handleUserSelect = () => {
 		const conversation = {
-			userPhotoUrl: photoURL,
-			userDisplayName: displayName,
+			userDisplayName: username,
 			userUid: uid,
-			userLastSeen: timeStamp
+			userColour: colour
 		};
 		dispatch(setConversation(conversation));
 
@@ -25,20 +24,44 @@ const ChatListItem = (props) => {
 		dispatch(setShowMobileConversation(true));
 	};
 
+	const getUsernameInitials = () => {
+		if (!username) return '';
+		return username.charAt(0).toUpperCase() + username.charAt(1).toLowerCase();
+	};
+
+	const UserIcon = () => {
+		return (
+			<div
+				className="circle"
+				style={{
+					height: '100%',
+					width: '100%',
+					borderRadius: '50%',
+					backgroundColor: colour,
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
+				}}
+			>
+				<span style={{ color: 'white', fontSize: '1.5rem' }}>{getUsernameInitials()}</span>
+			</div>
+		);
+	};
+
 	return (
 		<>
 			<StyledChatListItem onClick={handleUserSelect}>
 				<StyledProfileImage>
 					<div className="image-container">
 						<div className="image">
-							<img src={photoURL ? photoURL : UserIcon} alt={displayName} />
+							<UserIcon />
 						</div>
 					</div>
 				</StyledProfileImage>
 				<StyledContentContainer>
 					<StyledPrimaryRow>
-						<div className="name">{displayName}</div>
-						<div className="time-stamp">{timeStamp}</div>
+						<div className="name">{username}</div>
+						{/* <div className="time-stamp">{timeStamp}</div> */}
 					</StyledPrimaryRow>
 					<StyledSecondaryRow>{/* <div className="message">{lastMessage}</div> */}</StyledSecondaryRow>
 				</StyledContentContainer>

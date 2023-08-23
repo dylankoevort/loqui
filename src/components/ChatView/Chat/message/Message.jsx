@@ -3,19 +3,24 @@ import { useSelector } from 'react-redux';
 import { StyledMessageRow, StyledMessage } from './styledComponents';
 
 const Message = (props) => {
-	const { message } = props;
+	const { messages } = props;
+	const { message, messageUserId, timestamp, username } = messages;
 	const user = useSelector((state) => state.app.user);
 
+	const formatTimestamp = () => {
+		return timestamp?.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+	};
+
 	return (
-		<StyledMessageRow className={`${message.sentFromUid === user.uid ? 'message-out' : 'message-in'}`}>
+		<StyledMessageRow className={`${messageUserId === user.uid ? 'message-out' : 'message-in'}`}>
 			<StyledMessage>
-				<div className={`message-bubble ${message.sentFromUid === user.uid ? 'outgoing' : 'incoming'}`}>
+				<div className={`message-bubble ${messageUserId === user.uid ? 'outgoing' : 'incoming'}`}>
 					<div className="message">
-						<div className="text">{message.message}</div>
-						<div className="timestamp">{message.timestamp}</div>
+						<div className="text">{message}</div>
+						<div className="timestamp">{formatTimestamp()}</div>
 					</div>
 				</div>
-				<div className={`message-padding ${message.sentFromUid === user.uid ? 'outgoing' : 'incoming'}`}></div>
+				<div className={`message-padding ${messageUserId === user.uid ? 'outgoing' : 'incoming'}`}></div>
 			</StyledMessage>
 		</StyledMessageRow>
 	);

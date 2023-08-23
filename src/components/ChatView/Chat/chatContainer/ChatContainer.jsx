@@ -31,28 +31,15 @@ import { setShowMobileConversation, setShowMobileUsers } from 'store/slices';
 const ChatContainer = () => {
 	const dispatch = useDispatch();
 	const scroll = useRef();
+	const user = useSelector((state) => state.app.user);
 	const isMobile = useSelector((state) => state.app.isMobile);
-	const uid = useSelector((state) => state.app.session.uid);
 	const conversationData = useSelector((state) => state.app.conversation);
 	const [messages, setMessages] = useState([]);
 	const [userDetails, setUserDetails] = useState({
 		userDisplayName: '',
-		userPhotoUrl: '',
-		userLastSeen: ''
+		userColour: ''
 	});
 	const [message, setMessage] = useState('');
-	const currentUserUid = useSelector((state) => state.app.session.uid);
-	const messageValue = useRef(message);
-
-	useEffect(() => {
-		if (conversationData) {
-			setUserDetails({
-				userDisplayName: conversationData.userDisplayName,
-				userPhotoUrl: conversationData.userPhotoUrl,
-				userLastSeen: conversationData.userLastSeen
-			});
-		}
-	}, [conversationData]);
 
 	const returnToChatList = () => {
 		if (!isMobile) return;
@@ -208,26 +195,34 @@ const ChatContainer = () => {
 	}, [messages]);
 
 	useEffect(() => {
-		const q = query(
-			collection(db, 'messages'),
-			or(
-				and(where('sentFromUid', '==', uid), where('sentToUid', '==', conversationData.userUid)),
-				and(where('sentFromUid', '==', conversationData.userUid), where('sentToUid', '==', uid))
-			),
-			orderBy('sentAt', 'desc'),
-			limit(1000)
-		);
-		const unsubscribe = onSnapshot(q, (querySnapshot) => {
-			const fetchedMessages = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-			fetchedMessages.map((message) => {
-				message.timestamp = message.sentAt?.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+		if (conversationData) {
+			setUserDetails({
+				userDisplayName: conversationData.userDisplayName,
+				userColour: conversationData.userColour
 			});
 
-			const sortedMessages = fetchedMessages.sort((a, b) => a.sentAt - b.sentAt);
-			setMessages(sortedMessages);
-		});
-		return () => unsubscribe;
-	}, [conversationData]);
+			// debugger;
+
+			const unsubscribe = onSnapshot(
+				query(collection(db, 'users', user?.uid, 'chatUsers', conversationData?.userUid, 'messages'), orderBy('timestamp'), limit(200)),
+				(snapshot) => {
+					const fetchedMessages = snapshot.docs.map((doc) => ({
+						id: doc.id,
+						messages: doc.data()
+					}));
+
+					// debugger;
+
+					// fetchedMessages.map((message) => {
+					// 	message.timestamp = message.timestamp?.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+					// });
+					console.log(fetchedMessages);
+					setMessages(fetchedMessages);
+				}
+			);
+			return () => unsubscribe;
+		}
+	}, [conversationData?.userUid]);
 
 	const sendMessage = async (event) => {
 		event.preventDefault();
@@ -235,16 +230,54 @@ const ChatContainer = () => {
 			return;
 		}
 
-		messageValue.current = message;
-		setMessage('');
-		return;
+		try {
+			if (user && conversationData) {
+				// Add to current user messages
+				await addDoc(collection(db, 'users', user.uid, 'chatUsers', conversationData.userUid, 'messages'), {
+					username: user.username,
+					messageUserId: user.uid,
+					message: message,
+					timestamp: new Date()
+				});
 
-		// await addDoc(collection(db, 'messages'), {
-		// 	message: messageValue.current,
-		// 	sentFromUid: currentUserUid,
-		// 	sentToUid: conversationData.userUid,
-		// 	sentAt: serverTimestamp()
-		// });
+				// Add to receiver messages
+				await addDoc(collection(db, 'users', conversationData.userUid, 'chatUsers', user.uid, 'messages'), {
+					username: user.username,
+					messageUserId: user.uid,
+					message: message,
+					timestamp: new Date()
+				});
+
+				setMessage('');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const getUsernameInitials = () => {
+		const username = userDetails.userDisplayName;
+		if (!username) return '';
+		return username.charAt(0).toUpperCase() + username.charAt(1).toLowerCase();
+	};
+
+	const UserIcon = () => {
+		return (
+			<div
+				className="circle"
+				style={{
+					height: '100%',
+					width: '100%',
+					borderRadius: '50%',
+					backgroundColor: userDetails.userColour,
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
+				}}
+			>
+				<span style={{ color: 'white', fontSize: '1.5rem' }}>{getUsernameInitials()}</span>
+			</div>
+		);
 	};
 
 	return (
@@ -258,7 +291,7 @@ const ChatContainer = () => {
 					)}
 					<StyledProfileImage id="chat-profile-image">
 						<div className="image-container">
-							<img src={userDetails.userPhotoUrl ? userDetails.userPhotoUrl : UserIcon} alt="" />
+							<UserIcon />
 						</div>
 					</StyledProfileImage>
 					<StyledUserDetails id="chat-user-details">
@@ -279,8 +312,8 @@ const ChatContainer = () => {
 					{/* {mockMessages?.map((message, index) => (
 						<Message key={index} message={message} />
 						))} */}
-					{messages?.map((message, index) => (
-						<Message key={index} message={message} />
+					{messages?.map(({ id, messages }) => (
+						<Message key={id} messages={messages} />
 					))}
 					<span ref={scroll}></span>
 				</StyledMessageContainer>
