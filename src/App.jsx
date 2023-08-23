@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { doc, deleteDoc } from 'firebase/firestore';
-import { db } from 'src/firebase';
-import { setUser, setIsMobile, setLoading } from 'store/slices';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from 'src/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { setUser, setIsMobile } from 'store/slices';
 import Landing from './components/Landing';
 import ComingSoon from './components/ComingSoon';
 import Loading from './components/Loading';
@@ -11,9 +12,10 @@ import { AES, enc } from 'crypto-js';
 
 function App() {
 	const dispatch = useDispatch();
-	const loading = useSelector((state) => state.app.loading);
-	const user = useSelector((state) => state.app.user);
-	const logout = useSelector((state) => state.app.logout);
+	// const loading = useSelector((state) => state.app.loading);
+	// const user = useSelector((state) => state.app.user);
+	const [showTempLoading, setShowTempLoading] = useState(true);
+	const [user, loading] = useAuthState(auth);
 
 	window.addEventListener('resize', function () {
 		setViewSize();
@@ -21,15 +23,26 @@ function App() {
 
 	useEffect(() => {
 		setViewSize();
-
-		const storedUser = window.localStorage.getItem('user');
-
-		if (storedUser) {
-			const bytes = AES.decrypt(storedUser, 'sdfjsdfmlsakd;h98pasdfhjg9384ty453l;iuh');
-			var decryptedUser = JSON.parse(bytes.toString(enc.Utf8));
-			dispatch(setUser(decryptedUser));
-		}
 	}, []);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setShowTempLoading(false);
+		}, 2000);
+	}, []);
+
+	useEffect(() => {
+		if (!user) return;
+		const getStoredUser = async () => {
+			const docSnap = await getDoc(doc(db, 'users', user.uid));
+			const storedUser = docSnap.data();
+
+			if (storedUser) {
+				dispatch(setUser(storedUser));
+			}
+		};
+		getStoredUser();
+	}, [user]);
 
 	const setViewSize = () => {
 		const isMobile =
@@ -37,45 +50,14 @@ function App() {
 		dispatch(setIsMobile(isMobile));
 	};
 
-	useEffect(() => {
-		setTimeout(() => {
-			dispatch(setLoading(false));
-		}, 3500);
-	}, [loading]);
-
-	useEffect(() => {
-		const logoutUser = async () => {
-			if (!logout) return;
-			window.localStorage.removeItem('user');
-			dispatch(
-				setUser({
-					username: '',
-					colour: ''
-				})
-			);
-			// TODO Fix permissions issue
-			await deleteUser();
-			window.location.reload();
-		};
-
-		logoutUser();
-	}, [logout]);
-
-	const deleteUser = async () => {
-		const userRef = doc(db, 'users', user.uid);
-		await deleteDoc(userRef);
-	};
-
 	const render = () => {
-		if (loading) {
+		if (loading || showTempLoading) {
 			return <Loading />;
 		}
 
-		if (user.username !== '' && user.colour !== '') {
-			return <ChatView />;
-		}
+		return user ? <ChatView /> : <Landing />;
 
-		return <Landing />;
+		// return <Landing />;
 
 		// return <Loading />;
 		// return <ChatView />;

@@ -6,14 +6,15 @@ const initialState = {
 		colour: ''
 	},
 	loading: false,
-	logout: false,
+	isMobile: false,
+	showMobileUsers: true,
+	showMobileConversation: false,
 
 	session: {
 		uid: null,
 		displayName: '',
 		photoURL: '',
-		progressBarFinished: false,
-		logout: false
+		progressBarFinished: false
 	},
 	token: null,
 	loggedIn: false,
@@ -23,10 +24,7 @@ const initialState = {
 		userDisplayName: '',
 		userUid: '',
 		userLastSeen: null
-	},
-	isMobile: false,
-	showMobileUsers: true,
-	showMobileConversation: false
+	}
 };
 
 const appSlice = createSlice({
@@ -36,25 +34,6 @@ const appSlice = createSlice({
 		setUser: (state, action) => {
 			state.user = action.payload;
 		},
-		setLoading: (state, action) => {
-			state.loading = action.payload;
-		},
-		setLogout: (state, action) => {
-			state.logout = action.payload;
-		},
-		setToken: (state, action) => {
-			state.token = action.payload;
-		},
-		setSession: (state, action) => {
-			state.session.uid = action.payload.uid;
-			state.session.displayName = action.payload.displayName;
-			state.session.photoURL = action.payload.photoURL;
-		},
-		clearSession: () => initialState,
-		setProgressBarFinished: (state, action) => {
-			state.session.progressBarFinished = action.payload;
-		},
-
 		setConversation: (state, action) => {
 			state.conversation.messages = action.payload.messages;
 			state.conversation.userPhotoUrl = action.payload.userPhotoUrl;
@@ -74,18 +53,6 @@ const appSlice = createSlice({
 	}
 });
 
-export const {
-	setUser,
-	setLoading,
-	setToken,
-	setSession,
-	setConversation,
-	clearSession,
-	setProgressBarFinished,
-	setLogout,
-	setIsMobile,
-	setShowMobileUsers,
-	setShowMobileConversation
-} = appSlice.actions;
+export const { setUser, setConversation, setIsMobile, setShowMobileUsers, setShowMobileConversation } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -1,28 +1,4 @@
 import appSlice from './appSlice';
-import {
-	setUser,
-	setLoading,
-	setToken,
-	setSession,
-	setConversation,
-	clearSession,
-	setProgressBarFinished,
-	setLogout,
-	setIsMobile,
-	setShowMobileUsers,
-	setShowMobileConversation
-} from './appSlice';
+import { setUser, setConversation, setIsMobile, setShowMobileUsers, setShowMobileConversation } from './appSlice';
 export { appSlice };
-export {
-	setUser,
-	setLoading,
-	setToken,
-	setSession,
-	setConversation,
-	clearSession,
-	setProgressBarFinished,
-	setLogout,
-	setIsMobile,
-	setShowMobileUsers,
-	setShowMobileConversation
-};
+export { setUser, setConversation, setIsMobile, setShowMobileUsers, setShowMobileConversation };

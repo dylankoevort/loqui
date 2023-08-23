@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from 'src/firebase';
+import { auth, db } from 'src/firebase';
+import { signInAnonymously } from 'firebase/auth';
 import { StyledLanding } from './styledComponents';
 import { Button, Form, Input, ColorPicker } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { setUser, setLoading } from 'store/slices';
+import { setUser } from 'store/slices';
 import { IconClear } from 'assets';
 import { AES } from 'crypto-js';
 import { v4 as uuid } from 'uuid';
@@ -20,30 +21,34 @@ const Landing = () => {
 			return;
 		}
 
-		const user = {
-			username: values.username.trim(),
-			colour: typeof colorHex === 'string' ? colorHex : colorHex.toHexString(),
-			uid: uuid()
-		};
+		try {
+			await signInAnonymously(auth).then(async (userCredential) => {
+				const newUser = {
+					uid: userCredential.user.uid,
+					username: values.username.trim(),
+					colour: typeof colorHex === 'string' ? colorHex : colorHex.toHexString(),
+					createdAt: userCredential.user.metadata.createdAt,
+					creationTime: userCredential.user.metadata.creationTime,
+					lastLoginAt: userCredential.user.metadata.lastLoginAt,
+					lastSignInTime: userCredential.user.metadata.lastSignInTime
+				};
 
-		// TODO Need to add check for if a user is deleted from firebase, their local must logout
-		await addUser(user);
+				await addUser(newUser);
+			});
+		} catch (error) {
+			console.error(error);
+			alert(error);
+		}
 	};
 
 	const addUser = async (user) => {
 		await setDoc(doc(db, 'users', user.uid), user)
 			.then(() => {
-				const encryptedUser = AES.encrypt(JSON.stringify(user), 'sdfjsdfmlsakd;h98pasdfhjg9384ty453l;iuh').toString();
-				window.localStorage.setItem('user', encryptedUser);
-
 				dispatch(setUser(user));
-				dispatch(setLoading(true));
-
 				form.resetFields();
 			})
 			.catch((error) => {
 				console.error(error);
-				alert('User could not be added. Contact support if this issue persists.');
 				alert(error);
 			});
 	};
