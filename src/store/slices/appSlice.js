@@ -5,7 +5,6 @@ const initialState = {
 		username: '',
 		colour: ''
 	},
-	loading: false,
 	isMobile: false,
 	showMobileUsers: true,
 	showMobileConversation: false,

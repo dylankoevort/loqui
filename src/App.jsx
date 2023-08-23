@@ -2,18 +2,16 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from 'src/firebase';
+import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { setUser, setIsMobile } from 'store/slices';
 import Landing from './components/Landing';
 import ComingSoon from './components/ComingSoon';
 import Loading from './components/Loading';
 import ChatView from 'components/ChatView';
-import { AES, enc } from 'crypto-js';
 
 function App() {
 	const dispatch = useDispatch();
-	// const loading = useSelector((state) => state.app.loading);
-	// const user = useSelector((state) => state.app.user);
 	const [showTempLoading, setShowTempLoading] = useState(true);
 	const [user, loading] = useAuthState(auth);
 
@@ -39,6 +37,21 @@ function App() {
 
 			if (storedUser) {
 				dispatch(setUser(storedUser));
+			} else {
+				try {
+					await signOut(auth).then(() => {
+						window.localStorage.removeItem('user');
+						dispatch(
+							setUser({
+								username: '',
+								colour: ''
+							})
+						);
+					});
+				} catch (error) {
+					console.error(error);
+					alert(error);
+				}
 			}
 		};
 		getStoredUser();

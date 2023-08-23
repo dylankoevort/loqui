@@ -8,8 +8,6 @@ import { Button, Form, Input, ColorPicker } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { setUser } from 'store/slices';
 import { IconClear } from 'assets';
-import { AES } from 'crypto-js';
-import { v4 as uuid } from 'uuid';
 
 const Landing = () => {
 	const dispatch = useDispatch();
