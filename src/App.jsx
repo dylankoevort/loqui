@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { doc, deleteDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from 'src/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { setUser, setIsMobile, setLoading } from 'store/slices';
+import { setUser, setIsMobile } from 'store/slices';
 import Landing from './components/Landing';
 import ComingSoon from './components/ComingSoon';
 import Loading from './components/Loading';
@@ -14,6 +14,7 @@ function App() {
 	const dispatch = useDispatch();
 	// const loading = useSelector((state) => state.app.loading);
 	// const user = useSelector((state) => state.app.user);
+	const [showTempLoading, setShowTempLoading] = useState(true);
 	const [user, loading] = useAuthState(auth);
 
 	window.addEventListener('resize', function () {
@@ -24,6 +25,25 @@ function App() {
 		setViewSize();
 	}, []);
 
+	useEffect(() => {
+		setTimeout(() => {
+			setShowTempLoading(false);
+		}, 2000);
+	}, []);
+
+	useEffect(() => {
+		if (!user) return;
+		const getStoredUser = async () => {
+			const docSnap = await getDoc(doc(db, 'users', user.uid));
+			const storedUser = docSnap.data();
+
+			if (storedUser) {
+				dispatch(setUser(storedUser));
+			}
+		};
+		getStoredUser();
+	}, [user]);
+
 	const setViewSize = () => {
 		const isMobile =
 			(window.innerHeight >= window.innerWidth && window.innerWidth <= 768) || (window.innerHeight <= window.innerWidth && window.innerWidth <= 768);
@@ -31,7 +51,7 @@ function App() {
 	};
 
 	const render = () => {
-		if (loading) {
+		if (loading || showTempLoading) {
 			return <Loading />;
 		}
 

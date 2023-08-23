@@ -28,7 +28,7 @@ import { setUser } from 'store/slices';
 
 const UsersPanel = () => {
 	const dispatch = useDispatch();
-	const [user] = useAuthState(auth);
+	const user = useSelector((state) => state.app.user);
 	const username = useSelector((state) => state.app.user.username);
 	const userColour = useSelector((state) => state.app.user.colour);
 	const currentUserUid = useSelector((state) => state.app.session.uid);
@@ -51,6 +51,11 @@ const UsersPanel = () => {
 		if (option === 'Logout') logoutUser();
 	};
 
+	const getUsernameInitials = () => {
+		if (!username) return '';
+		return username.charAt(0).toUpperCase() + username.charAt(1).toLowerCase();
+	};
+
 	const UserIcon = () => {
 		return (
 			<div
@@ -65,7 +70,7 @@ const UsersPanel = () => {
 					justifyContent: 'center'
 				}}
 			>
-				<span style={{ color: 'white', fontSize: '1.5rem' }}>{username.charAt(0).toUpperCase() + username.charAt(1).toLowerCase()}</span>
+				<span style={{ color: 'white', fontSize: '1.5rem' }}>{getUsernameInitials()}</span>
 			</div>
 		);
 	};

@@ -287,13 +287,13 @@ const ChatContainer = () => {
 				<StyledChatFooter id="chat-footer">
 					<StyledFooterActions id="footer-actions">
 						{/* <StyledIcons id="footer-icons">
-					<IconButton>
-						<EmojiEmotionsOutlinedIcon />
-					</IconButton>
-					<IconButton>
-						<AddIcon />
-					</IconButton>
-				</StyledIcons> */}
+							<IconButton>
+								<EmojiEmotionsOutlinedIcon />
+							</IconButton>
+							<IconButton>
+								<AddIcon />
+							</IconButton>
+						</StyledIcons> */}
 						<StyledComposeMessage id="compose-message">
 							<div className="message-input">
 								<div className="input-field">
