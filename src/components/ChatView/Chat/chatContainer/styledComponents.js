@@ -171,7 +171,7 @@ const StyledComposeMessage = styled.div`
 	min-width: 0;
 
 	.message-input {
-		padding: 9px 12px;
+		padding: 7px 12px;
 		margin: 5px 8px;
 		border: 1px solid var(--secondary);
 		border-radius: 8px;

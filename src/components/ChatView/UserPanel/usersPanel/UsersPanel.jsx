@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { query, collection, orderBy, onSnapshot, limit, doc, deleteDoc } from 'firebase/firestore';
+import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
 import { auth, db } from 'src/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 
 import Menu from '@mui/material/Menu';
@@ -19,9 +18,6 @@ import {
 import ChatListItem from '../chatListItem';
 
 import IconButton from '@mui/material/IconButton';
-import PeopleIcon from '@mui/icons-material/People';
-import DonutLargeIcon from '@mui/icons-material/DonutLarge';
-import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { setUser } from 'store/slices';
@@ -76,13 +72,8 @@ const UsersPanel = () => {
 
 	// Handles updating of chat list users
 	useEffect(() => {
-		// const q = query(collection(db, 'users'), orderBy('lastMessageTimestamp'), limit(60));
-
 		const unsubscribe = onSnapshot(collection(db, 'users'), (querySnapshot) => {
 			const usersCollection = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-			// usersCollection.map((user) => {
-			// 	user.timeStamp = user.lastMessageTimestamp.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-			// });
 
 			const sortedUsers = usersCollection.sort((a, b) => b.timestamp - a.timestamp);
 			const filteredUsers = sortedUsers.filter((dbUser) => dbUser.uid !== user.uid);
@@ -170,7 +161,7 @@ const UsersPanel = () => {
 				<StyledUsersList id="chat-list">
 					{chatUsers?.map((listUser) => listUser.uid !== user.uid && <ChatListItem key={listUser.uid} user={listUser} />)}
 					<StyledInfoMessage id="info-message">
-						<div className="text">Your personal messages may or may not be encrypted.</div>
+						<div className="text">Your personal messages are private to their conversation.</div>
 					</StyledInfoMessage>
 				</StyledUsersList>
 			</StyledUsersPanel>

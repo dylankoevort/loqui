@@ -18,14 +18,11 @@ import {
 import Message from '../message';
 
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import SendIcon from '@mui/icons-material/Send';
 
-import { UserIcon } from 'assets';
 import { setShowMobileConversation, setShowMobileUsers } from 'store/slices';
 
 const ChatContainer = () => {
@@ -47,149 +44,6 @@ const ChatContainer = () => {
 		dispatch(setShowMobileUsers(true));
 	};
 
-	// const mockMessages = [
-	// 	{
-	// 		message: 'This is a test message',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a test message number two',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is an incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long outgoing message test',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a test message',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a test message number two',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is an incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long outgoing message test',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a test message',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a test message number two',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is an incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long outgoing message test',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a test message',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a test message number two',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is an incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long outgoing message test',
-	// 		sentFromUid: uid,
-	// 		sentToUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	},
-	// 	{
-	// 		message: 'This is a super duper extra duper super long long longggggggggggggg longggggggggggggggg long incoming message test',
-	// 		sentFromUid: 'QOs8b0P9E7kIJA4uggpO',
-	// 		sentToUid: uid,
-	// 		sentAt: new Date(),
-	// 		timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
-	// 	}
-	// ];
-
 	useEffect(() => {
 		scroll.current.scrollIntoView({ behavior: 'smooth' });
 	}, [messages]);
@@ -201,22 +55,13 @@ const ChatContainer = () => {
 				userColour: conversationData.userColour
 			});
 
-			// debugger;
-
 			const unsubscribe = onSnapshot(
-				query(collection(db, 'users', user?.uid, 'chatUsers', conversationData?.userUid, 'messages'), orderBy('timestamp'), limit(200)),
+				query(collection(db, 'users', user?.uid, 'chatUsers', conversationData?.userUid, 'messages'), orderBy('timestamp'), limit(500)),
 				(snapshot) => {
 					const fetchedMessages = snapshot.docs.map((doc) => ({
 						id: doc.id,
 						messages: doc.data()
 					}));
-
-					// debugger;
-
-					// fetchedMessages.map((message) => {
-					// 	message.timestamp = message.timestamp?.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-					// });
-					console.log(fetchedMessages);
 					setMessages(fetchedMessages);
 				}
 			);
@@ -229,6 +74,8 @@ const ChatContainer = () => {
 		if (message.trim() === '') {
 			return;
 		}
+
+		setMessage('');
 
 		try {
 			if (user && conversationData) {
@@ -247,8 +94,6 @@ const ChatContainer = () => {
 					message: message,
 					timestamp: new Date()
 				});
-
-				setMessage('');
 			}
 		} catch (error) {
 			console.log(error);
@@ -299,19 +144,16 @@ const ChatContainer = () => {
 						{/* <div className="last-seen">{'last seen today at ' + userDetails.userLastSeen}</div> */}
 					</StyledUserDetails>
 					{/* <StyledIconContainer id="chat-icon-container">
-				<IconButton>
-					<SearchIcon />
-				</IconButton>
-				<IconButton>
-					<MoreVertIcon />
-				</IconButton>
-			</StyledIconContainer> */}
+						<IconButton>
+							<SearchIcon />
+						</IconButton>
+						<IconButton>
+							<MoreVertIcon />
+						</IconButton>
+					</StyledIconContainer> */}
 				</StyledChatHeader>
 				<StyledMessageContainer id="message-container">
 					<h4>This is the start of your chat</h4>
-					{/* {mockMessages?.map((message, index) => (
-						<Message key={index} message={message} />
-						))} */}
 					{messages?.map(({ id, messages }) => (
 						<Message key={id} messages={messages} />
 					))}
@@ -330,7 +172,13 @@ const ChatContainer = () => {
 						<StyledComposeMessage id="compose-message">
 							<div className="message-input">
 								<div className="input-field">
-									<input type="text" placeholder="Type a message" value={message} onChange={(e) => setMessage(e.target.value)} />
+									<input
+										id="messageInput"
+										type="text"
+										placeholder="Type a message"
+										value={message}
+										onChange={(e) => setMessage(e.target.value)}
+									/>
 								</div>
 							</div>
 							<div className="send-message">
