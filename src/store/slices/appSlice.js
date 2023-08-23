@@ -6,14 +6,12 @@ const initialState = {
 		colour: ''
 	},
 	loading: false,
-	logout: false,
 
 	session: {
 		uid: null,
 		displayName: '',
 		photoURL: '',
-		progressBarFinished: false,
-		logout: false
+		progressBarFinished: false
 	},
 	token: null,
 	loggedIn: false,
@@ -38,9 +36,6 @@ const appSlice = createSlice({
 		},
 		setLoading: (state, action) => {
 			state.loading = action.payload;
-		},
-		setLogout: (state, action) => {
-			state.logout = action.payload;
 		},
 		setToken: (state, action) => {
 			state.token = action.payload;
@@ -82,7 +77,6 @@ export const {
 	setConversation,
 	clearSession,
 	setProgressBarFinished,
-	setLogout,
 	setIsMobile,
 	setShowMobileUsers,
 	setShowMobileConversation

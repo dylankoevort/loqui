@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from 'src/firebase';
+import { auth, db } from 'src/firebase';
+import { signInAnonymously } from 'firebase/auth';
 import { StyledLanding } from './styledComponents';
 import { Button, Form, Input, ColorPicker } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -26,19 +27,28 @@ const Landing = () => {
 			uid: uuid()
 		};
 
-		// TODO Need to add check for if a user is deleted from firebase, their local must logout
-		await addUser(user);
+		try {
+			await signInAnonymously(auth).then(async (userCredential) => {
+				console.log('Sign in successful');
+
+				const newUser = {
+					uid: userCredential.user.uid,
+					username: user.username,
+					colour: user.colour
+				};
+
+				await addUser(newUser);
+			});
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const addUser = async (user) => {
 		await setDoc(doc(db, 'users', user.uid), user)
 			.then(() => {
-				const encryptedUser = AES.encrypt(JSON.stringify(user), 'sdfjsdfmlsakd;h98pasdfhjg9384ty453l;iuh').toString();
-				window.localStorage.setItem('user', encryptedUser);
-
+				console.log('User added successfuly');
 				dispatch(setUser(user));
-				dispatch(setLoading(true));
-
 				form.resetFields();
 			})
 			.catch((error) => {

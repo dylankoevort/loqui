@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { query, collection, orderBy, onSnapshot, limit } from 'firebase/firestore';
-import { db } from 'src/firebase';
+import { query, collection, orderBy, onSnapshot, limit, doc, deleteDoc } from 'firebase/firestore';
+import { auth, db } from 'src/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {
@@ -21,10 +24,11 @@ import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-import { setLogout } from 'store/slices';
+import { setUser } from 'store/slices';
 
 const UsersPanel = () => {
 	const dispatch = useDispatch();
+	const [user] = useAuthState(auth);
 	const username = useSelector((state) => state.app.user.username);
 	const userColour = useSelector((state) => state.app.user.colour);
 	const currentUserUid = useSelector((state) => state.app.session.uid);
@@ -44,7 +48,7 @@ const UsersPanel = () => {
 	const handleMenuItemClick = (option) => {
 		handleMenuClose();
 
-		if (option === 'Logout') dispatch(setLogout(true));
+		if (option === 'Logout') logoutUser();
 	};
 
 	const UserIcon = () => {
@@ -84,6 +88,33 @@ const UsersPanel = () => {
 
 		return () => unsubscribe;
 	}, []);
+
+	const logoutUser = async () => {
+		try {
+			await deleteUser();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const deleteUser = async () => {
+		const userRef = doc(db, 'users', user.uid);
+		await deleteDoc(userRef)
+			.then(async () => {
+				await signOut(auth).then(() => {
+					window.localStorage.removeItem('user');
+					dispatch(
+						setUser({
+							username: '',
+							colour: ''
+						})
+					);
+				});
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
 
 	return (
 		<>

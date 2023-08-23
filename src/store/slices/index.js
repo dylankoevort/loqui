@@ -7,7 +7,6 @@ import {
 	setConversation,
 	clearSession,
 	setProgressBarFinished,
-	setLogout,
 	setIsMobile,
 	setShowMobileUsers,
 	setShowMobileConversation
@@ -21,7 +20,6 @@ export {
 	setConversation,
 	clearSession,
 	setProgressBarFinished,
-	setLogout,
 	setIsMobile,
 	setShowMobileUsers,
 	setShowMobileConversation
