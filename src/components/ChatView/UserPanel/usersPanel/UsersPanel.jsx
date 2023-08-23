@@ -31,7 +31,6 @@ const UsersPanel = () => {
 	const user = useSelector((state) => state.app.user);
 	const username = useSelector((state) => state.app.user.username);
 	const userColour = useSelector((state) => state.app.user.colour);
-	const currentUserUid = useSelector((state) => state.app.session.uid);
 	const [chatUsers, setChatUsers] = useState([]);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
@@ -77,16 +76,16 @@ const UsersPanel = () => {
 
 	// Handles updating of chat list users
 	useEffect(() => {
-		const q = query(collection(db, 'users'), orderBy('lastMessageTimestamp'), limit(60));
+		// const q = query(collection(db, 'users'), orderBy('lastMessageTimestamp'), limit(60));
 
-		const unsubscribe = onSnapshot(q, (querySnapshot) => {
+		const unsubscribe = onSnapshot(collection(db, 'users'), (querySnapshot) => {
 			const usersCollection = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-			usersCollection.map((user) => {
-				user.timeStamp = user.lastMessageTimestamp.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-			});
+			// usersCollection.map((user) => {
+			// 	user.timeStamp = user.lastMessageTimestamp.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+			// });
 
-			const sortedUsers = usersCollection.sort((a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp);
-			const filteredUsers = sortedUsers.filter((user) => user.uid !== currentUserUid);
+			const sortedUsers = usersCollection.sort((a, b) => b.timestamp - a.timestamp);
+			const filteredUsers = sortedUsers.filter((dbUser) => dbUser.uid !== user.uid);
 
 			setChatUsers(filteredUsers);
 		});
@@ -169,9 +168,7 @@ const UsersPanel = () => {
 					<h4>{'Users online: ' + (chatUsers.length + 1)}</h4>
 				</StyledSearchBar>
 				<StyledUsersList id="chat-list">
-					{chatUsers.map((user) => (
-						<ChatListItem key={user.uid} user={user} />
-					))}
+					{chatUsers?.map((listUser) => listUser.uid !== user.uid && <ChatListItem key={listUser.uid} user={listUser} />)}
 					<StyledInfoMessage id="info-message">
 						<div className="text">Your personal messages may or may not be encrypted.</div>
 					</StyledInfoMessage>

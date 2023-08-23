@@ -45,10 +45,13 @@ const StyledMessage = styled.div`
 		border-radius: 7.5px;
 		position: relative;
 		z-index: 200;
+		font-weight: 500;
+		box-shadow: 0 1px 2px #555;
 
 		&.outgoing {
-			background-color: green;
+			background-color: #b4d7ff;
 			border-top-right-radius: 0;
+			// border: 2px solid black;
 		}
 
 		&.incoming {

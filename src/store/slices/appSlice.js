@@ -19,10 +19,9 @@ const initialState = {
 	loggedIn: false,
 	conversation: {
 		messages: [],
-		userPhotoUrl: '',
 		userDisplayName: '',
 		userUid: '',
-		userLastSeen: null
+		userColour: ''
 	}
 };
 
@@ -35,10 +34,9 @@ const appSlice = createSlice({
 		},
 		setConversation: (state, action) => {
 			state.conversation.messages = action.payload.messages;
-			state.conversation.userPhotoUrl = action.payload.userPhotoUrl;
 			state.conversation.userDisplayName = action.payload.userDisplayName;
 			state.conversation.userUid = action.payload.userUid;
-			state.conversation.userLastSeen = action.payload.userLastSeen;
+			state.conversation.userColour = action.payload.userColour;
 		},
 		setIsMobile: (state, action) => {
 			state.isMobile = action.payload;

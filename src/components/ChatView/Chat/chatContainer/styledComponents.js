@@ -4,6 +4,10 @@ const StyledChatContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	border-left: 1px solid var(--secondary);
+
+	@media screen and (max-width: 768px) {
+		border: 1px solid var(--secondary);
+	}
 `;
 
 const StyledChatHeader = styled.header`
