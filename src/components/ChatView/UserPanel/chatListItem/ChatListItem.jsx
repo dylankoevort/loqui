@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledChatListItem, StyledProfileImage, StyledContentContainer, StyledPrimaryRow, StyledSecondaryRow } from './styledComponents';
 import { setConversation, setShowMobileUsers, setShowMobileConversation } from 'store/slices';
-import { UserIcon } from 'src/assets';
 
 const ChatListItem = (props) => {
 	const dispatch = useDispatch();
@@ -61,9 +60,8 @@ const ChatListItem = (props) => {
 				<StyledContentContainer>
 					<StyledPrimaryRow>
 						<div className="name">{username}</div>
-						{/* <div className="time-stamp">{timeStamp}</div> */}
 					</StyledPrimaryRow>
-					<StyledSecondaryRow>{/* <div className="message">{lastMessage}</div> */}</StyledSecondaryRow>
+					<StyledSecondaryRow></StyledSecondaryRow>
 				</StyledContentContainer>
 			</StyledChatListItem>
 		</>
