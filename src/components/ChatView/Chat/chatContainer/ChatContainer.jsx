@@ -170,22 +170,25 @@ const ChatContainer = () => {
 							</IconButton>
 						</StyledIcons> */}
 						<StyledComposeMessage id="compose-message">
-							<div className="message-input">
-								<div className="input-field">
-									<input
-										id="messageInput"
-										type="text"
-										placeholder="Type a message"
-										value={message}
-										onChange={(e) => setMessage(e.target.value)}
-									/>
+							<form onSubmit={sendMessage} className="message-form">
+								<div className="message-input">
+									<div className="input-field">
+										<input
+											id="messageInput"
+											type="text"
+											placeholder="Type a message"
+											value={message}
+											onChange={(e) => setMessage(e.target.value)}
+											autoComplete="off"
+										/>
+									</div>
 								</div>
-							</div>
-							<div className="send-message">
-								<IconButton onClick={sendMessage}>
-									<SendIcon />
-								</IconButton>
-							</div>
+								<div className="send-message">
+									<IconButton id={'sendBtn'} onClick={sendMessage} type="submit">
+										<SendIcon />
+									</IconButton>
+								</div>
+							</form>
 						</StyledComposeMessage>
 					</StyledFooterActions>
 				</StyledChatFooter>
