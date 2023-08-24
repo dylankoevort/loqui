@@ -167,8 +167,13 @@ const StyledIcons = styled.div`
 const StyledComposeMessage = styled.div`
 	display: flex;
 	flex: 1;
-	align-items: flex-end;
-	min-width: 0;
+
+	.message-form {
+		display: flex;
+		flex: 1;
+		align-items: flex-end;
+		min-width: 0;
+	}
 
 	.message-input {
 		padding: 7px 12px;
